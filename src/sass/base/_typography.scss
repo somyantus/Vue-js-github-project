@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%; //1rem=10px
+}
+
 h1 {
   @include font-styling();
   text-align: center;
