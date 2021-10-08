@@ -1,0 +1,39 @@
+/** 
+* @description for content-alignment
+* @param {string} $display
+* @param {string} $flex-direction
+* @param {string} $justify
+* @param {string} $align
+*/
+
+@mixin content-alignment(
+  $display: flex,
+  $flex-direction: row,
+  $justify: initial,
+  $align: initial
+) {
+  display: $display;
+  flex-direction: $flex-direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/** 
+* @description for font styles
+* @param {number} $font-size
+* @param {number} $line-height
+* @param {string} $color
+* @param {string} $font-family
+*/
+
+@mixin font-styling(
+  $font-size: $font-size-1,
+  $line-height: 1rem,
+  $color: $black,
+  $font-family: $roboto-regular
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  font-family: $font-family;
+}
