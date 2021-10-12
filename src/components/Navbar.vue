@@ -1,5 +1,5 @@
 <template>
-  <section id="app">
+  <section>
     <nav class="navbar">
       <div class="navbar__logo">
         <h1><i class="icon-github navbar__icon"></i>Github</h1>
@@ -19,3 +19,7 @@
     <router-view />
   </section>
 </template>
+
+<style scoped lang="scss">
+@import '~/src/sass/components/navbar';
+</style>

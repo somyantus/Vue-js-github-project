@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import home from '../pages/Home.vue';
-import profile from '../pages/ProfilePage.vue';
-import navbar from '../components/Navbar.vue';
+import Home from '@/pages/Home.vue';
+import Profile from '@/pages/ProfilePage.vue';
+import Navbar from '@/components/Navbar.vue';
 
 Vue.use(VueRouter);
 
@@ -11,17 +11,17 @@ export default new VueRouter({
   routes: [
     {
       path: '',
-      component: navbar,
+      component: Navbar,
       children: [
         {
           path: '/',
           name: 'profile',
-          component: profile,
+          component: Profile,
         },
         {
           path: '/home',
           name: 'home',
-          component: home,
+          component: Home,
         },
       ],
     },

@@ -1,3 +1,6 @@
+@import '../abstracts/mixin';
+@import '../abstracts/variables';
+
 .profile {
   box-shadow: 0.1rem 0.1rem 1.9rem $bluish-shade;
   width: 38rem;
@@ -7,7 +10,7 @@
 
   &__personal-info {
     @include content-alignment(flex, column, initial, center);
-    background-image: url('./assets/images/profile-3.png');
+    background-image: url('../assets/images/profile-3.png');
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     padding: 2rem 7rem 1rem;
