@@ -1,4 +1,6 @@
+@import '../abstracts/mixin';
 .container {
+  @include content-alignment(flex, row, center);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
 }
