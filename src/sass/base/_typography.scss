@@ -3,6 +3,24 @@ html {
 }
 
 h1 {
-  @include font-styling();
-  text-align: center;
+  @include font-styling($font-size-4, 1rem, $black, $roboto-regular);
+}
+
+h2 {
+  @include font-styling($font-size-3, 3.5rem, $dark-grey-2);
+}
+
+h3 {
+  @include font-styling($font-size-1-2, 2.5rem, $grey-3, $roboto-bold);
+}
+
+a {
+  @include font-styling($font-size-1-2, 2rem, $dark-grey);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $black;
+    text-decoration: underline;
+  }
 }

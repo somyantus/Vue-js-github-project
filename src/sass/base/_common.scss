@@ -1,3 +1,9 @@
+@import '../abstracts/variables';
+
+body {
+  background: $grey-2;
+}
+
 * {
   box-sizing: border-box;
 }
