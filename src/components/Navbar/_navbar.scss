@@ -1,5 +1,5 @@
-@import '../abstracts/mixin';
-@import '../abstracts/variables';
+@import '../../sass/abstracts/mixin';
+@import '../../sass/abstracts/variables';
 
 .navbar {
   @include content-alignment(flex, initial, initial, center);

@@ -34,45 +34,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    userName: {
-      required: true,
-      type: String,
-    },
-    followingNum: {
-      required: true,
-      type: Number,
-    },
-    followerNum: {
-      required: true,
-      type: Number,
-    },
-    name: {
-      required: true,
-      type: String,
-    },
-    bio: {
-      required: true,
-      type: String,
-    },
-    blog: {
-      required: true,
-      type: String,
-    },
-    email: {
-      required: true,
-      type: String,
-    },
-    githubLink: {
-      required: true,
-      type: String,
-    },
-  },
-};
-</script>
+<script lang="ts" src="./profileCard"></script>
 
 <style scoped lang="scss">
-@import '~/src/sass/layouts/profile-page';
+@import './profile-page';
 </style>

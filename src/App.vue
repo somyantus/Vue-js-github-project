@@ -1,8 +1,26 @@
 <template>
   <div id="app">
-    <router-view />
+    <Navbar />
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex';
+import Navbar from '@/components/Navbar/Navbar.vue';
+
+export default {
+  name: 'app',
+  components: {
+    Navbar,
+  },
+  methods: {
+    ...mapActions(['fetchAccessToken']),
+  },
+  created() {
+    this.fetchAccessToken();
+  },
+};
+</script>
 
 <style lang="scss">
 @import './sass/vendors/container';

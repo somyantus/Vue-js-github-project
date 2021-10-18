@@ -25,6 +25,8 @@
   </section>
 </template>
 
+<script lang="ts" src="./navbar"></script>
+
 <style scoped lang="scss">
-@import '~/src/sass/components/navbar';
+@import './navbar';
 </style>
