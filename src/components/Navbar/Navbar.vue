@@ -8,8 +8,13 @@
         <router-link :to="{ name: 'home' }" class="navbar__items"
           ><i class="icon-home navbar__home-icon"></i>Home</router-link
         >
-        <router-link :to="{ name: 'home' }" class="navbar__items"
-          >Login</router-link
+        <a
+          href="#"
+          :to="{ name: 'login' }"
+          class="navbar__items"
+          @click.prevent="log_out"
+          v-if="$store.state.accessToken"
+          >Logout</a
         >
         <router-link :to="{ name: 'home' }" class="navbar__items"
           >Account</router-link
