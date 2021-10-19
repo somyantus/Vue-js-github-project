@@ -21,7 +21,6 @@
         >
       </div>
     </nav>
-    <router-view />
   </section>
 </template>
 

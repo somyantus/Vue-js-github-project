@@ -37,5 +37,5 @@
 <script lang="ts" src="./profileCard"></script>
 
 <style scoped lang="scss">
-@import './profile-page';
+@import './profile-card';
 </style>
