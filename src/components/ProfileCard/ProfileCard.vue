@@ -2,7 +2,7 @@
   <div class="profile">
     <div class="profile__personal-info">
       <img class="profile__img" :src="avatar" />
-      <p class="profile__username">{{ userName }}</p>
+      <p class="profile__username">{{ $route.params.userName }}</p>
     </div>
     <div class="profile__desc">
       <div class="profile__connectors">

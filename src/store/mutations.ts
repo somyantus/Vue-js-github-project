@@ -1,7 +1,7 @@
 import { MutationTypes } from './mutation-types';
-import { State } from './state';
+import { StateType } from './state';
 
-export type Mutations<S = State> = {
+export type Mutations<S = StateType> = {
   [MutationTypes.loginStart](state: S): void;
   [MutationTypes.loginStop](state: S, errorMessage: string): void;
   [MutationTypes.logOut](state: S): void;
@@ -23,14 +23,11 @@ export const mutations: Mutations = {
   },
   [MutationTypes.change](state, token) {
     state.token = token;
-    console.log(token);
   },
   [MutationTypes.setPosts](state, data) {
     state.data = data;
-    console.log(data);
   },
   [MutationTypes.updateAccessToken](state, accessToken) {
     state.accessToken = accessToken;
-    console.log(accessToken);
   },
 };

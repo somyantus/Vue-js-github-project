@@ -5,7 +5,7 @@ export default Vue.extend({
   name: 'Navbar',
   methods: {
     ...mapActions(['logOut']),
-    log_out() {
+    LogOut() {
       this.logOut().then(() => {
         this.$router.push({
           name: 'login',

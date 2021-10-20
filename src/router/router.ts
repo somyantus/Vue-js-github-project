@@ -3,10 +3,11 @@ import VueRouter from 'vue-router';
 import Home from '@/pages/Home.vue';
 import Profile from '@/pages/ProfilePage/ProfilePage.vue';
 import Login from '@/pages/LoginPage/LoginPage.vue';
+import NotFound from '@/pages/404Page/404Page.vue';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -15,14 +16,35 @@ export default new VueRouter({
       component: Login,
     },
     {
-      path: '/profile',
+      path: '/profile/:userName',
       name: 'profile',
       component: Profile,
+      meta: { requiresAuth: true },
     },
     {
       path: '/home',
       name: 'home',
       component: Home,
     },
+    {
+      path: '*',
+      component: NotFound,
+    },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem('accessToken') == null) {
+      next({
+        name: 'login',
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;

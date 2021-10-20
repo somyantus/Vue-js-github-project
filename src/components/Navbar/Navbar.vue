@@ -12,7 +12,7 @@
           href="#"
           :to="{ name: 'login' }"
           class="navbar__items"
-          @click.prevent="log_out"
+          @click.prevent="LogOut"
           v-if="$store.state.accessToken"
           >Logout</a
         >

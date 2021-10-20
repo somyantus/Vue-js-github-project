@@ -6,4 +6,4 @@ export const state = {
   loginError: '',
 };
 
-export type State = typeof state;
+export type StateType = typeof state;

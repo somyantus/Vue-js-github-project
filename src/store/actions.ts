@@ -1,36 +1,14 @@
-import { ActionContext, ActionTree } from 'vuex';
-import wrapper from '@/store/axios-wrapper';
-import { ActionTypes } from '@/store/actions-type';
-import { Mutations } from './mutations';
+import { ActionTree } from 'vuex';
+import AxiosWrapper from '@/store/axios-wrapper';
+import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
-import { State } from './state';
+import { StateType } from './state';
 
-type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
-    key: K,
-    payload?: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<State, State>, 'commit'>;
-
-export interface Actions {
-  [ActionTypes.doLogin](
-    { commit }: AugmentedActionContext,
-    payload: string
-  ): Promise<any>;
-  [ActionTypes.fetchAccessToken](
-    { commit }: AugmentedActionContext,
-    { dispatch }: AugmentedActionContext,
-    payload: string
-  ): void;
-  [ActionTypes.logOut]({ commit }: AugmentedActionContext): Promise<any>;
-}
-
-export const actions: ActionTree<State, State> & Actions = {
+export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.doLogin]({ commit }, token: string): Promise<any> {
     commit(MutationTypes.loginStart);
     return new Promise((resolve, reject) => {
-      wrapper
-        .index()
+      AxiosWrapper.index(token)
         .then((response: any) => {
           localStorage.setItem('accessToken', token);
           commit(MutationTypes.setPosts, response.data);
@@ -56,7 +34,6 @@ export const actions: ActionTree<State, State> & Actions = {
     return new Promise((resolve) => {
       commit(MutationTypes.logOut);
       localStorage.removeItem('accessToken');
-      console.log('Logged out');
       resolve(true);
     });
   },

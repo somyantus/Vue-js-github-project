@@ -18,14 +18,15 @@ export default Vue.extend({
         .then(() => {
           this.$router.push({
             name: 'profile',
+            params: { userName: this.$store.state.data.login },
           });
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    changed(event: any) {
-      this.$store.commit('change', event.target.value);
+    changed() {
+      this.$store.commit('change', this.token);
     },
   },
 });

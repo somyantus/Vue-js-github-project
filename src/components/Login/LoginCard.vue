@@ -6,7 +6,7 @@
     <p v-if="loginError">{{ loginError }}</p>
 
     <form class="login-card__form" @submit.prevent="loginSubmit">
-      <p v-if="accessToken" class="login-card__mssg">Login Successful</p>
+      <p v-if="accessToken" class="login-card__label">Login Successful</p>
       <label class="login-card__label">Enter your token</label>
       <input
         class="login-card__input"

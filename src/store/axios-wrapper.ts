@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import Constants from '@/constants/constants';
 
 export default {
-  index(): any {
-    return axios.get('https://api.github.com/user', {
+  index(token: string): Promise<AxiosResponse> {
+    return axios.get(Constants.TokenUrl, {
       headers: {
-        Authorization: 'Bearer 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',
+        Authorization: `Bearer ${token}`,
       },
     });
   },
