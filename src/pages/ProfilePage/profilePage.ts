@@ -1,22 +1,12 @@
 import Vue from 'vue';
+import { mapState } from 'vuex';
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
 
 export default Vue.extend({
   components: {
     ProfileCard,
   },
-  data() {
-    return {
-      profile: {
-        userName: '',
-        followingNum: '',
-        followerNum: '',
-        name: '',
-        bio: '',
-        blog: '',
-        email: '',
-        githubLink: '',
-      },
-    };
+  computed: {
+    ...mapState(['data']),
   },
 });

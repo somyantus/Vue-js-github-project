@@ -1,0 +1,92 @@
+@import '../abstracts/mixin';
+@import '../abstracts/variables';
+
+.profile {
+  box-shadow: 0.1rem 0.1rem 1.9rem $bluish-shade;
+  width: 38rem;
+  border-radius: 2rem;
+  margin: 8rem auto;
+  padding: 0;
+
+  &__personal-info {
+    @include content-alignment(flex, column, initial, center);
+    background-image: url('../assets/images/profile-3.png');
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    padding: 2rem 7rem 1rem;
+    min-height: 23rem;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    height: 13rem;
+    width: 13rem;
+    margin-bottom: 2rem;
+  }
+
+  &__username {
+    @include font-styling($font-size-1-7, 1.5rem, $white);
+    margin-bottom: 2.5rem;
+  }
+
+  &__desc {
+    @include content-alignment(flex, row);
+  }
+
+  &__connectors {
+    @include font-styling($font-size-1-2);
+    @include content-alignment(flex, column, left);
+    padding: 2rem 3.5rem;
+    background: $grey-1;
+  }
+
+  &__following {
+    max-width: 7rem;
+    line-height: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+
+    &-num {
+      font-family: $roboto-light;
+    }
+  }
+
+  &__followers {
+    @extend .profile__following;
+
+    &-num {
+      @extend .profile__following-num;
+    }
+  }
+
+  &__location {
+    @extend .profile__following;
+  }
+
+  &__details {
+    padding: 2rem 1.5rem 2rem 2.5rem;
+    background: $grey-2;
+  }
+
+  &__name {
+    max-width: 3rem;
+  }
+
+  &__bio {
+    @include font-styling($font-size-1, 1rem, $dark-grey);
+    margin-top: 2.5rem;
+  }
+
+  &__blog {
+    @include font-styling($font-size-1-3, 2rem, $dark-grey);
+    margin-top: 2rem;
+  }
+
+  &__links {
+    @include content-alignment(flex, column);
+    padding: 1.5rem 3.5rem;
+    background: $white;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+}

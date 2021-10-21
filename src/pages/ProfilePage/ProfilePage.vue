@@ -1,14 +1,15 @@
 <template>
   <div>
     <ProfileCard
-      :user-name="profile.userName"
-      :following-num="profile.followingNum"
-      :follower-num="profile.followerNum"
-      :name="profile.name"
-      :bio="profile.bio"
-      :blog="profile.blog"
-      :email="profile.email"
-      :github-link="profile.githubLink"
+      :avatar="data.avatar_url"
+      :user-name="data.login"
+      :following-num="data.following"
+      :follower-num="data.followers"
+      :name="data.name"
+      :bio="data.bio"
+      :blog="data.blog"
+      :email="data.email"
+      :github-link="data.html_url"
     ></ProfileCard>
   </div>
 </template>

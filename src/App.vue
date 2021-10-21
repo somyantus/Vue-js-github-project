@@ -6,10 +6,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Navbar from '@/components/Navbar/Navbar.vue';
 
 export default {
-  components: { Navbar },
+  name: 'app',
+  components: {
+    Navbar,
+  },
+  methods: {
+    ...mapActions(['fetchAccessToken']),
+  },
+  created() {
+    this.fetchAccessToken();
+  },
 };
 </script>
 

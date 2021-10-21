@@ -2,14 +2,17 @@ import Vue from 'vue';
 
 export default Vue.extend({
   props: {
+    avatar: {
+      type: String,
+    },
     userName: {
       type: String,
     },
     followingNum: {
-      type: String,
+      type: Number,
     },
     followerNum: {
-      type: String,
+      type: Number,
     },
     name: {
       type: String,
