@@ -1,5 +1,5 @@
 import { ActionTree } from 'vuex';
-import AxiosWrapper from '@/store/axios-wrapper';
+import AxiosWrapper from '@/utilities/axios-wrapper';
 import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
@@ -30,11 +30,8 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
       dispatch('doLogin', token);
     }
   },
-  [ActionTypes.logOut]({ commit }): Promise<any> {
-    return new Promise((resolve) => {
-      commit(MutationTypes.logOut);
-      localStorage.removeItem('accessToken');
-      resolve(true);
-    });
+  [ActionTypes.logOut]({ commit }): void {
+    commit(MutationTypes.logOut);
+    localStorage.removeItem('accessToken');
   },
 };

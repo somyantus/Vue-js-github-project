@@ -25,5 +25,5 @@ export interface Actions {
     { dispatch }: AugmentedActionContext,
     payload: string
   ): void;
-  [ActionTypes.logOut]({ commit }: AugmentedActionContext): Promise<any>;
+  [ActionTypes.logOut]({ commit }: AugmentedActionContext): void;
 }
