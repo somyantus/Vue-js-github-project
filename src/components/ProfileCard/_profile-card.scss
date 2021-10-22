@@ -76,7 +76,7 @@
   }
 
   &__blog {
-    @include font-styling($font-size-1-3, 2rem, $dark-grey);
+    @include font-styling($font-size-1, 2rem, $dark-grey);
     margin-top: 2rem;
   }
 

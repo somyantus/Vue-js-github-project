@@ -1,0 +1,12 @@
+.loading {
+  display: flex;
+  justify-content: center;
+
+  &__img {
+    height: 4rem;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}

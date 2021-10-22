@@ -4,6 +4,8 @@ import Home from '@/pages/Home.vue';
 import Profile from '@/pages/ProfilePage/ProfilePage.vue';
 import Login from '@/pages/LoginPage/LoginPage.vue';
 import NotFound from '@/pages/404Page/404Page.vue';
+import Search from '@/pages/SearchPage/SearchPage.vue';
+import { state } from '@/store/state';
 
 Vue.use(VueRouter);
 
@@ -16,7 +18,7 @@ const router = new VueRouter({
       component: Login,
     },
     {
-      path: '/profile/:userName',
+      path: '/profile',
       name: 'profile',
       component: Profile,
       meta: { requiresAuth: true },
@@ -25,6 +27,12 @@ const router = new VueRouter({
       path: '/home',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
+      meta: { requiresAuth: true },
     },
     {
       path: '*',
@@ -36,6 +44,19 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (localStorage.getItem('accessToken') == null) {
+      next({
+        name: 'login',
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (state.searchData == null) {
       next({
         name: 'login',
       });

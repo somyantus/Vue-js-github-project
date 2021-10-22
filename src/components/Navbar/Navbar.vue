@@ -16,8 +16,8 @@
           v-if="$store.state.accessToken"
           >Logout</a
         >
-        <router-link :to="{ name: 'home' }" class="navbar__items"
-          >Account</router-link
+        <router-link :to="{ name: 'search' }" class="navbar__items"
+          >Search</router-link
         >
       </div>
     </nav>

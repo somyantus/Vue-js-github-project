@@ -1,4 +1,5 @@
 import { ActionTree } from 'vuex';
+import axios from 'axios';
 import AxiosWrapper from '@/utilities/axios-wrapper';
 import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
@@ -33,5 +34,25 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.logOut]({ commit }): void {
     commit(MutationTypes.logOut);
     localStorage.removeItem('accessToken');
+  },
+  [ActionTypes.getSearchdata]({ commit }, payload): void {
+    const { userName, page } = payload;
+    axios
+      .get(`https://api.github.com/search/users?q=${userName}&page=${page}`)
+      .then((response: any) => {
+        commit(MutationTypes.setSearchdata, {
+          searchData: response.data.items,
+          append: page !== 1,
+        });
+      });
+  },
+  [ActionTypes.getUser]({ commit }, userName: string): Promise<any> {
+    return new Promise((resolve) => {
+      axios.get(`https://api.github.com/users/${userName}`).then((response: any) => {
+        commit(MutationTypes.setSearchUser, response.data);
+        resolve(true);
+        console.log(response.data);
+      });
+    });
   },
 };

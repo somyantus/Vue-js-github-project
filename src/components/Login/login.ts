@@ -18,22 +18,19 @@ export default Vue.extend({
         .then(() => {
           this.$router.push({
             name: 'profile',
-            params: { userName: this.$store.state.data.login },
+            query: { userName: this.$store.state.data.login },
           });
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    changed() {
-      this.$store.commit('change', this.token);
-    },
   },
   mounted() {
     if (this.$store.state.accessToken) {
       this.$router.push({
         name: 'profile',
-        params: { userName: this.$store.state.data.login },
+        query: { userName: this.$store.state.data.login },
       });
     }
   },
