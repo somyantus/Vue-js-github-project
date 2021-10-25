@@ -1,8 +1,11 @@
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
   name: 'Navbar',
+  computed: {
+    ...mapState(['accessToken']),
+  },
   methods: {
     ...mapActions(['logOut']),
     LogOut() {

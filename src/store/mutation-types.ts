@@ -6,4 +6,6 @@ export enum MutationTypes {
   updateAccessToken = 'updateAccessToken',
   setSearchdata = 'setSearchdata',
   setSearchUser = 'setSearchUser',
+  whoToFollow = 'whoToFollow',
+  removeWhoToFollow = 'removeWhoToFollow',
 }

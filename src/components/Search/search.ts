@@ -1,17 +1,20 @@
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
-  name: 'Seacrh',
+  name: 'Search',
   data() {
     return {
       username: '',
       page: 0,
     };
   },
+  computed: {
+    ...mapState(['searchData']),
+  },
   methods: {
     ...mapActions(['getSearchdata']),
-    searchData(reset = false) {
+    setSearchData(reset = false) {
       if (reset) {
         this.page = 0;
       }
@@ -30,7 +33,7 @@ export default Vue.extend({
       const bottomWindow = doc.scrollTop + window.innerHeight === doc.offsetHeight;
 
       if (bottomWindow) {
-        this.searchData();
+        this.setSearchData();
       }
     },
   },

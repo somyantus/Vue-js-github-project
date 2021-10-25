@@ -8,6 +8,8 @@ export enum ActionTypes {
   logOut = 'logOut',
   getSearchdata = 'getSearchdata',
   getUser = 'getUser',
+  getWhoToFollow = 'getWhoToFollow',
+  removeWhoToFollow = 'removeWhoToFollow',
 }
 
 type AugmentedActionContext = {
@@ -26,5 +28,5 @@ export interface Actions {
   ): void;
   [ActionTypes.logOut]({ commit }: AugmentedActionContext): void;
   [ActionTypes.getSearchdata]({ commit }: AugmentedActionContext, payload: any): void;
-  [ActionTypes.getUser]({ commit }: AugmentedActionContext, payload: string): Promise<any>;
+  [ActionTypes.getUser]({ commit }: AugmentedActionContext, payload: string): Promise<void>;
 }

@@ -2,11 +2,11 @@
   <div>
     <div class="search container">
       <input placeholder="Search" class="search__input" v-model="username" />
-      <a href="#" @click.prevent="searchData(true)" class="search__button">Search</a>
+      <a href="#" @click.prevent="setSearchData(true)" class="search__button">Search</a>
     </div>
-    <div v-if="$store.state.searchData.length > 0">
+    <div v-if="searchData.length > 0">
       <div
-        v-for="(data, index) in $store.state.searchData"
+        v-for="(data, index) in searchData"
         :key="index"
         class="search__card"
         @click.prevent="getPorfile(data)"

@@ -13,12 +13,10 @@
           :to="{ name: 'login' }"
           class="navbar__items"
           @click.prevent="LogOut"
-          v-if="$store.state.accessToken"
+          v-if="accessToken"
           >Logout</a
         >
-        <router-link :to="{ name: 'search' }" class="navbar__items"
-          >Search</router-link
-        >
+        <router-link :to="{ name: 'search' }" class="navbar__items">Search</router-link>
       </div>
     </nav>
   </section>

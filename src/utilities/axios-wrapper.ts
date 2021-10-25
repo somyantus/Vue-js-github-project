@@ -9,4 +9,16 @@ export default {
       },
     });
   },
+  searchData(payload: any): Promise<AxiosResponse> {
+    return axios.get(Constants.SearchDataUrl, {
+      params: { q: payload.userName, page: payload.page },
+    });
+  },
+  searchUser(userName: string): Promise<AxiosResponse> {
+    return axios.get(Constants.TokenUrl, {
+      params: {
+        q: userName,
+      },
+    });
+  },
 };

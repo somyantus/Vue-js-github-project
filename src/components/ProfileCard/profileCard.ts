@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { mapState } from 'vuex';
 
 export default Vue.extend({
   props: {
@@ -29,5 +30,8 @@ export default Vue.extend({
     githubLink: {
       type: String,
     },
+  },
+  computed: {
+    ...mapState(['data']),
   },
 });

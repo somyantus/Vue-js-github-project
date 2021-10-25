@@ -9,6 +9,8 @@ export type Mutations<S = StateType> = {
   [MutationTypes.updateAccessToken](state: S, accessToken: string): void;
   [MutationTypes.setSearchdata](state: S, searchData: any): void;
   [MutationTypes.setSearchUser](state: S, searchUser: string): void;
+  [MutationTypes.whoToFollow](state: S, whoToFollowData: any): void;
+  [MutationTypes.removeWhoToFollow](state: S, index: number): void;
 };
 
 export const mutations: Mutations = {
