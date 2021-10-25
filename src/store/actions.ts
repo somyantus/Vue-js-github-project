@@ -1,5 +1,4 @@
 import { ActionTree } from 'vuex';
-import axios, { Axios } from 'axios';
 import AxiosWrapper from '@/utilities/axios-wrapper';
 import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
@@ -17,7 +16,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
           commit(MutationTypes.updateAccessToken, token);
           resolve(true);
         })
-        .catch((error: string | any) => {
+        .catch((error: any) => {
           commit(MutationTypes.loginStop, error.response.data.error);
           commit(MutationTypes.updateAccessToken, '');
           reject(error);
@@ -35,12 +34,11 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     commit(MutationTypes.logOut);
     localStorage.removeItem('accessToken');
   },
-  [ActionTypes.getSearchdata]({ commit }, payload): void {
-    const { userName, page } = payload;
+  [ActionTypes.getSearchData]({ commit }, payload): void {
     AxiosWrapper.searchData(payload).then((response: any) => {
       commit(MutationTypes.setSearchdata, {
         searchData: response.data.items,
-        append: page !== 1,
+        append: payload.page !== 1,
       });
     });
   },

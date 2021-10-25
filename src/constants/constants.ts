@@ -1,7 +1,11 @@
-const URL = 'https://api.github.com/user';
-const SearchDataURL = 'https://api.github.com/search/users';
+const BASE_URL = 'https://api.github.com';
+const TOKEN = '/user';
+const SEARCH_URL = '/search/users';
+const SEARCH_USER_URL = '/users';
 
-export default {
-  TokenUrl: URL,
-  SearchDataUrl: SearchDataURL,
+export {
+  BASE_URL,
+  TOKEN,
+  SEARCH_URL,
+  SEARCH_USER_URL,
 };

@@ -1,12 +1,13 @@
 import { ActionContext } from 'vuex';
 import { Mutations } from './mutations';
 import { StateType } from './state';
+import { GetSearchDataPayload } from './types/payloadTypes';
 
 export enum ActionTypes {
   doLogin = 'doLogin',
   fetchAccessToken = 'fetchAccessToken',
   logOut = 'logOut',
-  getSearchdata = 'getSearchdata',
+  getSearchData = 'getSearchData',
   getUser = 'getUser',
   getWhoToFollow = 'getWhoToFollow',
   removeWhoToFollow = 'removeWhoToFollow',
@@ -27,6 +28,9 @@ export interface Actions {
     payload: string
   ): void;
   [ActionTypes.logOut]({ commit }: AugmentedActionContext): void;
-  [ActionTypes.getSearchdata]({ commit }: AugmentedActionContext, payload: any): void;
+  [ActionTypes.getSearchData](
+    { commit }: AugmentedActionContext,
+    payload: GetSearchDataPayload
+  ): void;
   [ActionTypes.getUser]({ commit }: AugmentedActionContext, payload: string): Promise<void>;
 }

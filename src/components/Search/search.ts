@@ -13,15 +13,15 @@ export default Vue.extend({
     ...mapState(['searchData']),
   },
   methods: {
-    ...mapActions(['getSearchdata']),
+    ...mapActions(['getSearchData']),
     setSearchData(reset = false) {
       if (reset) {
         this.page = 0;
       }
       this.page += 1;
-      this.getSearchdata({ userName: this.username, page: this.page });
+      this.getSearchData({ userName: this.username, page: this.page });
     },
-    getPorfile(data: any) {
+    getProfile(data: any) {
       this.$router.push({
         name: 'profile',
         query: { userName: data.login },

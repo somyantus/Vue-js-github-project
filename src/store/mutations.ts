@@ -1,5 +1,6 @@
 import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
+import { SearchDataPayload } from './types/payloadTypes';
 
 export type Mutations<S = StateType> = {
   [MutationTypes.loginStart](state: S): void;
@@ -7,10 +8,8 @@ export type Mutations<S = StateType> = {
   [MutationTypes.logOut](state: S): void;
   [MutationTypes.setPosts](state: S, data: string): void;
   [MutationTypes.updateAccessToken](state: S, accessToken: string): void;
-  [MutationTypes.setSearchdata](state: S, searchData: any): void;
+  [MutationTypes.setSearchdata](state: S, payload: SearchDataPayload): void;
   [MutationTypes.setSearchUser](state: S, searchUser: string): void;
-  [MutationTypes.whoToFollow](state: S, whoToFollowData: any): void;
-  [MutationTypes.removeWhoToFollow](state: S, index: number): void;
 };
 
 export const mutations: Mutations = {

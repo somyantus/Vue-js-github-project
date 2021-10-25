@@ -9,7 +9,7 @@
         v-for="(data, index) in searchData"
         :key="index"
         class="search__card"
-        @click.prevent="getPorfile(data)"
+        @click.prevent="getProfile(data)"
       >
         <img v-if="data.avatar_url" :src="data.avatar_url" class="search__img" />
         <h2 v-if="data.login" class="search__username">
