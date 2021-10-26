@@ -5,6 +5,9 @@ import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
+  [ActionTypes.toggleLoader]({ commit }, enabled): void {
+    commit(MutationTypes.toggleLoader, enabled);
+  },
   [ActionTypes.doLogin]({ commit }, token: string): Promise<any> {
     commit(MutationTypes.loginStart);
     return new Promise((resolve, reject) => {

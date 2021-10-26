@@ -4,27 +4,13 @@ import { SearchDataPayload } from './types/payloadTypes';
 
 export type Mutations<S = StateType> = {
   [MutationTypes.loginStart](state: S): void;
-  [MutationTypes.loginStop](
-    state: S,
-    errorMessage: string
-  ): void;
+  [MutationTypes.loginStop](state: S, errorMessage: string): void;
   [MutationTypes.logOut](state: S): void;
-  [MutationTypes.setPosts](
-    state: S,
-    data: string
-  ): void;
-  [MutationTypes.updateAccessToken](
-    state: S,
-    accessToken: string
-  ): void;
-  [MutationTypes.setSearchdata](
-    state: S,
-    payload: SearchDataPayload
-  ): void;
-  [MutationTypes.setSearchUser](
-    state: S,
-    searchUser: string
-  ): void;
+  [MutationTypes.setPosts](state: S, data: string): void;
+  [MutationTypes.updateAccessToken](state: S, accessToken: string): void;
+  [MutationTypes.setSearchdata](state: S, payload: SearchDataPayload): void;
+  [MutationTypes.setSearchUser](state: S, searchUser: string): void;
+  [MutationTypes.toggleLoader](state: S, enabled: boolean): void;
 };
 
 export const mutations: Mutations = {
@@ -43,27 +29,21 @@ export const mutations: Mutations = {
   [MutationTypes.setPosts](state, data) {
     state.data = data;
   },
-  [MutationTypes.updateAccessToken](
-    state,
-    accessToken
-  ) {
+  [MutationTypes.updateAccessToken](state, accessToken) {
     state.accessToken = accessToken;
   },
   [MutationTypes.setSearchdata](state, payload) {
     const { searchData, append } = payload;
     if (append) {
-      state.searchData = [
-        ...state.searchData,
-        ...searchData,
-      ];
+      state.searchData = [...state.searchData, ...searchData];
     } else {
       state.searchData = searchData;
     }
   },
-  [MutationTypes.setSearchUser](
-    state,
-    searchUser
-  ) {
+  [MutationTypes.setSearchUser](state, searchUser) {
     state.searchUser = searchUser;
+  },
+  [MutationTypes.toggleLoader](state, enabled) {
+    state.loading = enabled;
   },
 };

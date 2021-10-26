@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/pages/Home.vue';
+import Home from '@/pages/Home/HomePage.vue';
 import Profile from '@/pages/ProfilePage/ProfilePage.vue';
 import Login from '@/pages/LoginPage/LoginPage.vue';
 import NotFound from '@/pages/404Page/404Page.vue';
 import Search from '@/pages/SearchPage/SearchPage.vue';
 import { state } from '@/store/state';
+import store from '@/store';
+import { ActionTypes } from '@/store/actions-type';
 
 Vue.use(VueRouter);
 
@@ -55,6 +57,8 @@ router.beforeEach((to, from, next) => {
   }
 });
 router.beforeEach((to, from, next) => {
+  // show loader
+  store.dispatch(ActionTypes.toggleLoader, true);
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (state.searchData == null) {
       next({
@@ -68,4 +72,10 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.afterEach(() => {
+  // hide loader after 1sec
+  setTimeout(() => {
+    store.dispatch(ActionTypes.toggleLoader, false);
+  }, 1000);
+});
 export default router;

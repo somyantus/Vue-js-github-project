@@ -1,5 +1,7 @@
 <template>
   <div class="home container">
-    <h1>Home</h1>
+    <Home />
   </div>
 </template>
+
+<script lang="ts" src="./homePage"></script>
