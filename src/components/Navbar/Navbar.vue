@@ -17,6 +17,7 @@
           >Logout</a
         >
         <router-link :to="{ name: 'search' }" class="navbar__items">Search</router-link>
+        <router-link :to="{ name: 'whoToFollow' }" class="navbar__items">Suggestions</router-link>
       </div>
     </nav>
   </section>

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
   props: {
@@ -32,6 +32,14 @@ export default Vue.extend({
     },
   },
   computed: {
-    ...mapState(['data']),
+    ...mapState(['data', 'searchUser', 'whoToFollowData']),
+  },
+  methods: {
+    ...mapActions(['addFollowing']),
+    setAddFollowing(username: any) {
+      this.addFollowing(username);
+      const follow: any = document.querySelector('.profile__follow-button');
+      follow.innerHTML = 'Following';
+    },
   },
 });

@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+import Vue from 'vue';
 import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
 import { SearchDataPayload } from './types/payloadTypes';
@@ -10,7 +12,8 @@ export type Mutations<S = StateType> = {
   [MutationTypes.updateAccessToken](state: S, accessToken: string): void;
   [MutationTypes.setSearchdata](state: S, payload: SearchDataPayload): void;
   [MutationTypes.setSearchUser](state: S, searchUser: string): void;
-  [MutationTypes.toggleLoader](state: S, enabled: boolean): void;
+  [MutationTypes.whoToFollow](state: S, payload: any): void;
+  [MutationTypes.removeWhoToFollow](state: S, index: number): void;
 };
 
 export const mutations: Mutations = {
@@ -43,7 +46,14 @@ export const mutations: Mutations = {
   [MutationTypes.setSearchUser](state, searchUser) {
     state.searchUser = searchUser;
   },
-  [MutationTypes.toggleLoader](state, enabled) {
-    state.loading = enabled;
+  [MutationTypes.whoToFollow](state, payload) {
+    if (payload.index >= 0) {
+      Vue.set(state.whoToFollowData, payload.index, payload.data[0]);
+    } else {
+      state.whoToFollowData = payload.data;
+    }
+  },
+  [MutationTypes.removeWhoToFollow](state, index) {
+    state.whoToFollowData.splice(index, 1);
   },
 };

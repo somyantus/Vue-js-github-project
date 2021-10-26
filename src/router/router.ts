@@ -5,6 +5,7 @@ import Profile from '@/pages/ProfilePage/ProfilePage.vue';
 import Login from '@/pages/LoginPage/LoginPage.vue';
 import NotFound from '@/pages/404Page/404Page.vue';
 import Search from '@/pages/SearchPage/SearchPage.vue';
+import WhoToFollow from '@/pages/WhoToFollow/WhoToFollow.vue';
 import { state } from '@/store/state';
 import store from '@/store';
 import { ActionTypes } from '@/store/actions-type';
@@ -37,6 +38,12 @@ const router = new VueRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/whoToFollow',
+      name: 'whoToFollow',
+      component: WhoToFollow,
+      meta: { requiresAuth: true },
+    },
+    {
       path: '*',
       component: NotFound,
     },
@@ -57,8 +64,6 @@ router.beforeEach((to, from, next) => {
   }
 });
 router.beforeEach((to, from, next) => {
-  // show loader
-  store.dispatch(ActionTypes.toggleLoader, true);
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (state.searchData == null) {
       next({
@@ -72,10 +77,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-router.afterEach(() => {
-  // hide loader after 1sec
-  setTimeout(() => {
-    store.dispatch(ActionTypes.toggleLoader, false);
-  }, 1000);
-});
 export default router;

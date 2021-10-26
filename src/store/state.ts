@@ -8,6 +8,7 @@ export const state = {
   loading: false,
   loginError: '',
   searchUser: {},
+  whoToFollowData: [] as User[],
 };
 
 export type StateType = typeof state;
