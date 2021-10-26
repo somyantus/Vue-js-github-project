@@ -1,0 +1,61 @@
+@import '../../sass/abstracts/variables';
+@import '../../sass/abstracts/mixin';
+
+.search {
+  width: fit-content;
+  box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+  background: #f1f5f8;
+  margin-top: 13rem;
+  padding: 3rem 3rem 1rem;
+  display: grid;
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    width: 44rem;
+    align-items: center;
+    background: $white;
+    margin: 1rem auto;
+    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+  }
+  &__input {
+    width: 38rem;
+    border-radius: 1.5rem;
+    border: none;
+    padding: 1rem;
+    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    outline: none;
+  }
+
+  &__img {
+    height: 9rem;
+    width: 9rem;
+    border-radius: 15rem;
+  }
+
+  &__button {
+    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    font-family: $roboto-regular;
+    padding: 0.5rem 3rem;
+    width: fit-content;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    background: $white;
+    color: $dark-grey-2;
+    text-decoration: none;
+
+    &:hover {
+      background: $dark-grey-2;
+      color: $white;
+    }
+  }
+
+  &__username {
+    @include font-styling($font-size-1-5, 1rem, $dark-grey-2, $roboto-regular);
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color: $dark-grey-2;
+    font-family: $roboto-regular;
+  }
+}

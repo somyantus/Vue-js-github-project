@@ -5,6 +5,9 @@ import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
+  [ActionTypes.toggleLoader]({ commit }, enabled): void {
+    commit(MutationTypes.toggleLoader, enabled);
+  },
   [ActionTypes.doLogin]({ commit }, token: string): Promise<any> {
     commit(MutationTypes.loginStart);
     return new Promise((resolve, reject) => {
@@ -16,7 +19,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
           commit(MutationTypes.updateAccessToken, token);
           resolve(true);
         })
-        .catch((error: string | any) => {
+        .catch((error: any) => {
           commit(MutationTypes.loginStop, error.response.data.error);
           commit(MutationTypes.updateAccessToken, '');
           reject(error);
@@ -33,5 +36,19 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.logOut]({ commit }): void {
     commit(MutationTypes.logOut);
     localStorage.removeItem('accessToken');
+  },
+  [ActionTypes.getSearchData]({ commit }, payload): void {
+    AxiosWrapper.searchData(payload).then((response: any) => {
+      commit(MutationTypes.setSearchdata, {
+        searchData: response.data.items,
+        append: payload.page !== 1,
+      });
+    });
+  },
+  [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
+    return AxiosWrapper.searchUser(userName).then((response: any) => {
+      commit(MutationTypes.setSearchUser, response.data);
+      console.log(response.data);
+    });
   },
 };

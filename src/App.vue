@@ -1,18 +1,26 @@
 <template>
   <div id="app">
     <Navbar />
+    <div v-show="loading">
+      <Loader />
+    </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import Navbar from '@/components/Navbar/Navbar.vue';
+import Loader from '@/components/Loader/Loader.vue';
 
 export default {
   name: 'app',
   components: {
     Navbar,
+    Loader,
+  },
+  computed: {
+    ...mapState(['loading']),
   },
   methods: {
     ...mapActions(['fetchAccessToken']),
