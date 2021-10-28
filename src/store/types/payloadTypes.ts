@@ -9,3 +9,14 @@ export interface GetSearchDataPayload {
   userName: string;
   page: number;
 }
+
+export interface WhoToFollowPayload {
+  page: number;
+  perPage: number;
+  index: number;
+}
+
+export interface MutationWhoToFollowPayload {
+  data: User[];
+  index: number;
+}

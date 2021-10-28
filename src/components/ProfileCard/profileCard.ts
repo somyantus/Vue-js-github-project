@@ -1,7 +1,12 @@
 import Vue from 'vue';
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
+  data() {
+    return {
+      isFollowing: false,
+    };
+  },
   props: {
     avatar: {
       type: String,
@@ -32,6 +37,13 @@ export default Vue.extend({
     },
   },
   computed: {
-    ...mapState(['data']),
+    ...mapState(['data', 'searchUser', 'whoToFollowData']),
+  },
+  methods: {
+    ...mapActions(['addFollowing']),
+    setAddFollowing(username: string) {
+      this.addFollowing(username);
+      this.isFollowing = true;
+    },
   },
 });

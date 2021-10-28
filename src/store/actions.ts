@@ -5,26 +5,21 @@ import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
-  [ActionTypes.toggleLoader]({ commit }, enabled): void {
-    commit(MutationTypes.toggleLoader, enabled);
-  },
-  [ActionTypes.doLogin]({ commit }, token: string): Promise<any> {
+  [ActionTypes.doLogin]({ commit }, token: string): Promise<void> {
+    commit(MutationTypes.loading, true);
     commit(MutationTypes.loginStart);
-    return new Promise((resolve, reject) => {
-      AxiosWrapper.index(token)
-        .then((response: any) => {
-          localStorage.setItem('accessToken', token);
-          commit(MutationTypes.setPosts, response.data);
-          commit(MutationTypes.loginStop, '');
-          commit(MutationTypes.updateAccessToken, token);
-          resolve(true);
-        })
-        .catch((error: any) => {
-          commit(MutationTypes.loginStop, error.response.data.error);
-          commit(MutationTypes.updateAccessToken, '');
-          reject(error);
-        });
-    });
+    return AxiosWrapper.index(token)
+      .then((response: any) => {
+        localStorage.setItem('accessToken', token);
+        commit(MutationTypes.setPosts, response.data);
+        commit(MutationTypes.loginStop, '');
+        commit(MutationTypes.updateAccessToken, token);
+        commit(MutationTypes.loading, false);
+      })
+      .catch((error: any) => {
+        commit(MutationTypes.loginStop, error.response.data.error);
+        commit(MutationTypes.updateAccessToken, '');
+      });
   },
   [ActionTypes.fetchAccessToken]({ commit, dispatch }): void {
     const token = localStorage.getItem('accessToken') || '';
@@ -38,17 +33,34 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     localStorage.removeItem('accessToken');
   },
   [ActionTypes.getSearchData]({ commit }, payload): void {
+    commit(MutationTypes.loading, true);
     AxiosWrapper.searchData(payload).then((response: any) => {
       commit(MutationTypes.setSearchdata, {
         searchData: response.data.items,
         append: payload.page !== 1,
       });
+      commit(MutationTypes.loading, false);
     });
   },
   [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
+    commit(MutationTypes.loading, true);
     return AxiosWrapper.searchUser(userName).then((response: any) => {
       commit(MutationTypes.setSearchUser, response.data);
-      console.log(response.data);
+      commit(MutationTypes.loading, false);
     });
+  },
+  [ActionTypes.getWhoToFollow]({ commit }, payload): void {
+    commit(MutationTypes.loading, true);
+    const { index } = payload;
+    AxiosWrapper.whoToFollow(payload).then((response: any) => {
+      commit(MutationTypes.whoToFollow, {
+        data: response.data,
+        index,
+      });
+      commit(MutationTypes.loading, false);
+    });
+  },
+  [ActionTypes.addFollowing]({ state }, username): void {
+    AxiosWrapper.addFollowing(username, state.accessToken);
   },
 };

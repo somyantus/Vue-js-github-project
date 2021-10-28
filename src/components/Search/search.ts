@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { mapActions, mapState } from 'vuex';
+import { User } from '@/store/types/userTypes';
 
 export default Vue.extend({
   name: 'Search',
@@ -21,7 +22,7 @@ export default Vue.extend({
       this.page += 1;
       this.getSearchData({ userName: this.username, page: this.page });
     },
-    getProfile(data: any) {
+    getProfile(data: User) {
       this.$router.push({
         name: 'profile',
         query: { userName: data.login },

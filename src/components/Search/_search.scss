@@ -11,13 +11,13 @@
 
   &__card {
     display: flex;
-    justify-content: center;
-    padding: 1rem;
+    padding: 1rem 4rem;
     width: 44rem;
     align-items: center;
     background: $white;
     margin: 1rem auto;
     box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    cursor: pointer;
   }
   &__input {
     width: 38rem;

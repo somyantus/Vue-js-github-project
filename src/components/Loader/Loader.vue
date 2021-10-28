@@ -8,4 +8,16 @@
 
 <style scoped lang="scss">
 @import './loader';
+
+.loading {
+  z-index: 99999;
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  top: 0;
+  left: 0;
+  align-items: center;
+}
 </style>

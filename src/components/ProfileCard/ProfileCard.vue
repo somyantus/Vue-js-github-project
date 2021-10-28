@@ -14,6 +14,17 @@
           <h3><i class="icon-user"></i>Followers</h3>
           <p class="profile__followers-num">{{ followerNum }}</p>
         </div>
+        <button
+          v-if="data.login != $route.query.userName && isFollowing === false"
+          type="button"
+          class="profile__follow-button"
+          @click.prevent="setAddFollowing($route.query.userName)"
+        >
+          Follow
+        </button>
+        <button v-if="isFollowing === true" type="button" class="profile__follow-button">
+          Following
+        </button>
       </div>
       <div class="profile__details">
         <h2 v-if="data.name" class="profile__name">{{ name }}</h2>
