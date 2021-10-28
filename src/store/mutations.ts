@@ -1,8 +1,7 @@
-/* eslint-disable prefer-destructuring */
 import Vue from 'vue';
 import { MutationTypes } from './mutation-types';
 import { StateType } from './state';
-import { SearchDataPayload } from './types/payloadTypes';
+import { SearchDataPayload, MutationWhoToFollowPayload } from './types/payloadTypes';
 
 export type Mutations<S = StateType> = {
   [MutationTypes.loginStart](state: S): void;
@@ -12,7 +11,7 @@ export type Mutations<S = StateType> = {
   [MutationTypes.updateAccessToken](state: S, accessToken: string): void;
   [MutationTypes.setSearchdata](state: S, payload: SearchDataPayload): void;
   [MutationTypes.setSearchUser](state: S, searchUser: string): void;
-  [MutationTypes.whoToFollow](state: S, payload: any): void;
+  [MutationTypes.whoToFollow](state: S, payload: MutationWhoToFollowPayload): void;
   [MutationTypes.removeWhoToFollow](state: S, index: number): void;
   [MutationTypes.loading](state: S, loading: boolean): void;
 };

@@ -2,7 +2,7 @@ import { ActionTree } from 'vuex';
 import AxiosWrapper from '@/utilities/axios-wrapper';
 import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
-import { StateType, state } from './state';
+import { StateType } from './state';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.doLogin]({ commit }, token: string): Promise<void> {

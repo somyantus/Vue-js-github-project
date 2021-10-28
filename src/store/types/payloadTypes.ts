@@ -15,3 +15,8 @@ export interface WhoToFollowPayload {
   perPage: number;
   index: number;
 }
+
+export interface MutationWhoToFollowPayload {
+  data: User[];
+  index: number;
+}
