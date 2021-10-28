@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from 'axios';
-// eslint-disable-next-line object-curly-newline
 import { BASE_URL, TOKEN, SEARCH_URL, SEARCH_USER_URL, FOLLOWING } from '@/constants/constants';
 import { GetSearchDataPayload, WhoToFollowPayload } from '@/store/types/payloadTypes';
 

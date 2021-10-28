@@ -7,8 +7,6 @@ import NotFound from '@/pages/404Page/404Page.vue';
 import Search from '@/pages/SearchPage/SearchPage.vue';
 import WhoToFollow from '@/pages/WhoToFollow/WhoToFollow.vue';
 import { state } from '@/store/state';
-import store from '@/store';
-import { ActionTypes } from '@/store/actions-type';
 
 Vue.use(VueRouter);
 

@@ -2,6 +2,11 @@ import Vue from 'vue';
 import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
+  data() {
+    return {
+      isFollowing: false,
+    };
+  },
   props: {
     avatar: {
       type: String,
@@ -36,10 +41,9 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions(['addFollowing']),
-    setAddFollowing(username: any) {
+    setAddFollowing(username: string) {
       this.addFollowing(username);
-      const follow: any = document.querySelector('.profile__follow-button');
-      follow.innerHTML = 'Following';
+      this.isFollowing = true;
     },
   },
 });

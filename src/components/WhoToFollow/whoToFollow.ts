@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { mapActions, mapState } from 'vuex';
+import { User } from '@/store/types/userTypes';
 
 export default Vue.extend({
   name: 'WhoToFollow',
@@ -20,11 +21,11 @@ export default Vue.extend({
     setWhoToFollowData() {
       this.getWhoToFollow({ page: this.page, perPage: this.perPage, index: -1 });
     },
-    changeSuggestion(index: any) {
+    changeSuggestion(index: number) {
       this.page += 1;
       this.getWhoToFollow({ page: this.page, perPage: 1, index });
     },
-    moveToProfile(data: any) {
+    moveToProfile(data: User) {
       this.$router.push({
         name: 'profile',
         query: { userName: data.login },

@@ -6,7 +6,7 @@ import { StateType, state } from './state';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.doLogin]({ commit }, token: string): Promise<void> {
-    state.loading = true;
+    commit(MutationTypes.loading, true);
     commit(MutationTypes.loginStart);
     return AxiosWrapper.index(token)
       .then((response: any) => {
@@ -14,7 +14,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
         commit(MutationTypes.setPosts, response.data);
         commit(MutationTypes.loginStop, '');
         commit(MutationTypes.updateAccessToken, token);
-        state.loading = false;
+        commit(MutationTypes.loading, false);
       })
       .catch((error: any) => {
         commit(MutationTypes.loginStop, error.response.data.error);
@@ -33,31 +33,31 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     localStorage.removeItem('accessToken');
   },
   [ActionTypes.getSearchData]({ commit }, payload): void {
-    state.loading = true;
+    commit(MutationTypes.loading, true);
     AxiosWrapper.searchData(payload).then((response: any) => {
       commit(MutationTypes.setSearchdata, {
         searchData: response.data.items,
         append: payload.page !== 1,
       });
-      state.loading = false;
+      commit(MutationTypes.loading, false);
     });
   },
   [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
-    state.loading = true;
+    commit(MutationTypes.loading, true);
     return AxiosWrapper.searchUser(userName).then((response: any) => {
       commit(MutationTypes.setSearchUser, response.data);
-      state.loading = false;
+      commit(MutationTypes.loading, false);
     });
   },
   [ActionTypes.getWhoToFollow]({ commit }, payload): void {
-    state.loading = true;
+    commit(MutationTypes.loading, true);
     const { index } = payload;
     AxiosWrapper.whoToFollow(payload).then((response: any) => {
       commit(MutationTypes.whoToFollow, {
         data: response.data,
         index,
       });
-      state.loading = false;
+      commit(MutationTypes.loading, false);
     });
   },
   [ActionTypes.addFollowing]({ state }, username): void {

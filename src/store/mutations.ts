@@ -14,6 +14,7 @@ export type Mutations<S = StateType> = {
   [MutationTypes.setSearchUser](state: S, searchUser: string): void;
   [MutationTypes.whoToFollow](state: S, payload: any): void;
   [MutationTypes.removeWhoToFollow](state: S, index: number): void;
+  [MutationTypes.loading](state: S, loading: boolean): void;
 };
 
 export const mutations: Mutations = {
@@ -23,7 +24,6 @@ export const mutations: Mutations = {
   },
   [MutationTypes.loginStop](state, errorMessage) {
     state.loggingIn = false;
-    state.loading = false;
     state.loginError = errorMessage;
   },
   [MutationTypes.logOut](state) {
@@ -55,5 +55,8 @@ export const mutations: Mutations = {
   },
   [MutationTypes.removeWhoToFollow](state, index) {
     state.whoToFollowData.splice(index, 1);
+  },
+  [MutationTypes.loading](state, loading) {
+    state.loading = loading;
   },
 };
