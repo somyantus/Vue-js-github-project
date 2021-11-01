@@ -12,7 +12,7 @@ export default Vue.extend({
     };
   },
   mounted() {
-    const username = this.$route.query.userName;
+    const username = this.$route.params.userName;
     const loginUser = this.$store.state.data.login;
     if (loginUser && username === loginUser) {
       this.profileData = this.$store.state.data;
@@ -24,7 +24,7 @@ export default Vue.extend({
   methods: {
     ...mapActions(['getUser']),
     searchUser() {
-      this.getUser(this.$route.query.userName).then(() => {
+      this.getUser(this.$route.params.userName).then(() => {
         this.profileData = this.$store.state.searchUser;
       });
     },

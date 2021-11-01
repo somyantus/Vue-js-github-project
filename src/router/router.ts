@@ -19,7 +19,7 @@ const router = new VueRouter({
       component: Login,
     },
     {
-      path: '/profile',
+      path: '/profile/:userName',
       name: 'profile',
       component: Profile,
       meta: { requiresAuth: true },
@@ -33,7 +33,6 @@ const router = new VueRouter({
       path: '/search',
       name: 'search',
       component: Search,
-      meta: { requiresAuth: true },
     },
     {
       path: '/whoToFollow',

@@ -2,32 +2,62 @@
 @import '../../sass/abstracts/variables';
 
 .follow {
-  @include content-alignment(flex, column, center, center);
-  margin-top: 13rem;
+  @include content-alignment(flex, column);
+  margin: 13rem auto;
+  width: fit-content;
 
-  &__heading {
-    @include font-styling($font-size-3, 1rem, $dark-grey-2, $roboto-regular);
+  &__heading-block {
+    display: flex;
+    padding: 0 4rem 0 0;
     margin-bottom: 2rem;
   }
 
+  &__heading {
+    @include font-styling($font-size-3, 1rem, white, $roboto-regular);
+    margin-bottom: 2rem;
+  }
+
+  &__refresh {
+    margin-left: auto;
+    width: fit-content;
+    background: white;
+    border-radius: 1rem;
+    padding: 0.6rem 3rem;
+    border: none;
+    color: #9ddcf5;
+    font-family: $roboto-regular;
+    letter-spacing: 0.1rem;
+
+    &:hover {
+      background: #a5f8ca;
+      color: white;
+    }
+  }
+
+  &__card-row {
+    display: flex;
+  }
+
   &__card {
-    @include content-alignment(flex, column, center);
     position: relative;
+    border-radius: 1.5rem;
     width: 31rem;
-    height: 13rem;
     margin-top: 2rem;
-    padding: 2rem 0 2rem 2.5rem;
-    background: $white;
-    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    margin-right: 3rem;
+    background: #ffffff;
+    box-shadow: 0.1rem 0.1rem 1rem rgb(196, 193, 193);
 
     &-1 {
       display: flex;
+      width: 100%;
+      justify-content: left;
+      align-items: center;
+      padding: 03rem;
     }
 
     &-2 {
       @include content-alignment(flex, row);
-      margin-top: 1rem;
-      margin-left: 0.4rem;
+      padding: 0 0 2rem;
     }
   }
 
@@ -57,17 +87,20 @@
   }
 
   &__button {
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    margin-top: 1rem;
+    width: fit-content;
+    background: linear-gradient(105deg, #a5f8ca, #9ddcf5);
+    border-radius: 1rem;
+    padding: 0.6rem 4rem;
+    margin: 0 auto;
     border: none;
-    color: $dark-grey-2;
-    background: $white;
-    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    color: white;
+    font-family: $roboto-regular;
+    letter-spacing: 0.1rem;
 
     &:hover {
-      background: $dark-grey-2;
-      color: $white;
+      background: white;
+      color: #9ddcf5;
+      border: 0.1rem solid #9ddcf5;
     }
   }
 }

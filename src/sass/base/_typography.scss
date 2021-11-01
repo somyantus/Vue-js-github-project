@@ -11,7 +11,7 @@ h2 {
 }
 
 h3 {
-  @include font-styling($font-size-1-2, 2.5rem, $grey-3, $roboto-bold);
+  @include font-styling($font-size-1-2, 2.5rem, #1277bd, $roboto-bold);
 }
 
 a {

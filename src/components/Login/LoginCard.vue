@@ -4,9 +4,9 @@
 
     <form class="login-card__form" @submit.prevent="loginSubmit">
       <p v-if="accessToken" class="login-card__label">Login Successful</p>
-      <label class="login-card__label">Enter your token</label>
-      <input class="login-card__input" type="text" placeholder="Enter token" v-model="token" />
-      <button type="submit" class="login-card__button">Submit</button>
+      <label class="login-card__label">Login Account</label>
+      <input class="login-card__input" type="password" placeholder="Enter token" v-model="token" />
+      <button type="submit" class="login-card__button">Login</button>
     </form>
   </div>
 </template>

@@ -49,16 +49,31 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
       commit(MutationTypes.loading, false);
     });
   },
-  [ActionTypes.getWhoToFollow]({ commit }, payload): void {
+  [ActionTypes.getWhoToFollow]({ state, commit }, payload): void {
     commit(MutationTypes.loading, true);
     const { index } = payload;
-    AxiosWrapper.whoToFollow(payload).then((response: any) => {
+
+    if (index === -1) {
+      AxiosWrapper.whoToFollow(payload).then((response: any) => {
+        commit(MutationTypes.whoToFollow, {
+          data: response.data,
+          index,
+        });
+        commit(MutationTypes.loading, false);
+      });
+    } else {
+      const nextFollow = state.whoToFollowData.slice(
+        state.whoToFollowLastIndex,
+        state.whoToFollowLastIndex + 1
+      );
+      console.log(state.whoToFollowData);
+      console.log(nextFollow);
       commit(MutationTypes.whoToFollow, {
-        data: response.data,
+        data: nextFollow,
         index,
       });
       commit(MutationTypes.loading, false);
-    });
+    }
   },
   [ActionTypes.addFollowing]({ state }, username): void {
     AxiosWrapper.addFollowing(username, state.accessToken);

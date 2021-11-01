@@ -9,6 +9,8 @@ export const state = {
   loginError: '',
   searchUser: {},
   whoToFollowData: [] as User[],
+  whoToFollowVisibleData: [] as User[],
+  whoToFollowLastIndex: 0,
 };
 
 export type StateType = typeof state;

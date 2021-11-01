@@ -46,10 +46,14 @@ export const mutations: Mutations = {
     state.searchUser = searchUser;
   },
   [MutationTypes.whoToFollow](state, payload) {
+    console.log('Payload ', payload);
     if (payload.index >= 0) {
-      Vue.set(state.whoToFollowData, payload.index, payload.data[0]);
+      Vue.set(state.whoToFollowVisibleData, payload.index, payload.data[0]);
+      state.whoToFollowLastIndex += 1;
     } else {
       state.whoToFollowData = payload.data;
+      state.whoToFollowVisibleData = payload.data.slice(0, 3);
+      state.whoToFollowLastIndex = 3;
     }
   },
   [MutationTypes.removeWhoToFollow](state, index) {

@@ -2,41 +2,50 @@
 @import '../../sass/abstracts/mixin';
 
 .login-card {
-  margin-top: 13rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
 
   &__form {
     flex-direction: column;
     display: flex;
     align-items: center;
-    padding: 3rem;
-    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
+    padding: 5rem;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0.1rem 0.1rem 1rem rgb(196, 193, 193);
   }
 
   &__label {
-    @include font-styling(2rem, 1rem, $dark-grey-2, $roboto-regular);
-    margin-bottom: 2rem;
+    @include font-styling(2rem, 1rem, black, $roboto-regular);
+    margin-bottom: 4rem;
   }
 
   &__input {
     width: 38rem;
-    border: none;
-    margin-bottom: 2rem;
-    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
-    padding: 0.5rem;
+    margin-bottom: 4rem;
+    border: 1px solid lightgrey;
     outline: none;
+    padding: 1.3rem;
+    border-radius: 1rem;
   }
 
   &__button {
     width: fit-content;
-    padding: 0.5rem 3rem;
-    border: 0.2rem solid $dark-grey-2;
-    background: $white;
-    color: $dark-grey;
+    background: linear-gradient(105deg, #a5f8ca, #9ddcf5);
+    border-radius: 1rem;
+    padding: 1rem 4rem;
+    border: none;
+    color: white;
     cursor: pointer;
+    font-family: $roboto-regular;
+    letter-spacing: 0.1rem;
 
     &:hover {
-      background: $dark-grey-2;
-      color: $white;
+      background: white;
+      color: #9ddcf5;
+      border: 0.1rem solid #9ddcf5;
     }
   }
 }

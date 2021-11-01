@@ -15,10 +15,10 @@
           <p class="profile__followers-num">{{ followerNum }}</p>
         </div>
         <button
-          v-if="data.login != $route.query.userName && isFollowing === false"
+          v-if="data.login != $route.params.userName && isFollowing === false"
           type="button"
           class="profile__follow-button"
-          @click.prevent="setAddFollowing($route.query.userName)"
+          @click.prevent="setAddFollowing($route.params.userName)"
         >
           Follow
         </button>
@@ -36,10 +36,10 @@
     </div>
     <div class="profile__links">
       <h3 v-if="data.email">
-        Email: <a href="/"> {{ email }}</a>
+        Email: <a target="blank" :href="email"> {{ email }}</a>
       </h3>
       <h3 v-if="data.html_url">
-        Github: <a href="/"> {{ githubLink }}</a>
+        Github: <a :href="githubLink" target="blank"> {{ githubLink }}</a>
       </h3>
     </div>
   </div>
