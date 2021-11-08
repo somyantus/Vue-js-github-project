@@ -18,7 +18,7 @@ export default Vue.extend({
         .then(() => {
           this.$router.push({
             name: 'profile',
-            query: { userName: this.$store.state.data.login },
+            params: { userName: this.$store.state.data.login },
           });
         })
         .catch((error) => {
@@ -30,7 +30,7 @@ export default Vue.extend({
     if (this.$store.state.accessToken) {
       this.$router.push({
         name: 'profile',
-        query: { userName: this.$store.state.data.login },
+        params: { userName: this.$store.state.data.login },
       });
     }
   },

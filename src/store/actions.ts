@@ -9,14 +9,14 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     commit(MutationTypes.loading, true);
     commit(MutationTypes.loginStart);
     return AxiosWrapper.index(token)
-      .then((response: any) => {
+      .then((response) => {
         localStorage.setItem('accessToken', token);
         commit(MutationTypes.setPosts, response.data);
         commit(MutationTypes.loginStop, '');
         commit(MutationTypes.updateAccessToken, token);
         commit(MutationTypes.loading, false);
       })
-      .catch((error: any) => {
+      .catch((error) => {
         commit(MutationTypes.loginStop, error.response.data.error);
         commit(MutationTypes.updateAccessToken, '');
       });
@@ -44,7 +44,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   },
   [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
     commit(MutationTypes.loading, true);
-    return AxiosWrapper.searchUser(userName).then((response: any) => {
+    return AxiosWrapper.searchUser(userName).then((response) => {
       commit(MutationTypes.setSearchUser, response.data);
       commit(MutationTypes.loading, false);
     });
@@ -54,7 +54,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     const { index } = payload;
 
     if (index === -1) {
-      AxiosWrapper.whoToFollow(payload).then((response: any) => {
+      AxiosWrapper.whoToFollow(payload).then((response) => {
         commit(MutationTypes.whoToFollow, {
           data: response.data,
           index,
@@ -66,8 +66,6 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
         state.whoToFollowLastIndex,
         state.whoToFollowLastIndex + 1
       );
-      console.log(state.whoToFollowData);
-      console.log(nextFollow);
       commit(MutationTypes.whoToFollow, {
         data: nextFollow,
         index,

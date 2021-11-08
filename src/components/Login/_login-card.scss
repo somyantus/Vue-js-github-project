@@ -2,50 +2,31 @@
 @import '../../sass/abstracts/mixin';
 
 .login-card {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
+  margin: 13rem auto 2rem;
 
   &__form {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
+    @include content-alignment(flex, column, initial, center);
     padding: 5rem;
-    background: white;
+    background: $white;
     border-radius: 1.5rem;
-    box-shadow: 0.1rem 0.1rem 1rem rgb(196, 193, 193);
+    box-shadow: 0.1rem 0.1rem 1rem $grey;
   }
 
   &__label {
-    @include font-styling(2rem, 1rem, black, $roboto-regular);
+    @include font-styling(2rem, 1rem, $black, $roboto-regular);
     margin-bottom: 4rem;
   }
 
   &__input {
     width: 38rem;
     margin-bottom: 4rem;
-    border: 1px solid lightgrey;
+    border: 1px solid $light-grey;
     outline: none;
     padding: 1.3rem;
     border-radius: 1rem;
   }
 
   &__button {
-    width: fit-content;
-    background: linear-gradient(105deg, #a5f8ca, #9ddcf5);
-    border-radius: 1rem;
     padding: 1rem 4rem;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-family: $roboto-regular;
-    letter-spacing: 0.1rem;
-
-    &:hover {
-      background: white;
-      color: #9ddcf5;
-      border: 0.1rem solid #9ddcf5;
-    }
   }
 }

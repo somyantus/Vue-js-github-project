@@ -4,16 +4,15 @@
 .navbar {
   @include content-alignment(flex, initial, initial, center);
   padding: 3rem 4rem;
-  background: white;
-  box-shadow: 0.5rem 0.3rem 1rem #a0a0a0;
+  background: $white;
+  box-shadow: 0.5rem 0.3rem 1rem $dark-grey-3;
 
   &__links {
     margin-left: auto;
   }
   &__items {
-    font-size: 1.5rem;
+    @include font-styling($font-size-1-5, 1rem, $black, $roboto-light);
     margin-right: 2rem;
-    color: black;
   }
 
   &__icon {
@@ -24,6 +23,6 @@
   &__home-icon {
     font-size: 2rem;
     margin-right: 1rem;
-    color: black;
+    color: $black;
   }
 }

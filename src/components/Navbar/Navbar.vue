@@ -6,7 +6,7 @@
       </div>
       <div class="navbar__links">
         <router-link
-          :to="{ name: 'profile', query: { userName: data.login } }"
+          :to="{ name: 'profile', params: { userName: data.login } }"
           class="navbar__items"
           ><i class="icon-home navbar__home-icon"></i>Home</router-link
         >

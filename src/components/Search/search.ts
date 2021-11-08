@@ -30,7 +30,7 @@ export default Vue.extend({
       this.$store.state.loading = false;
     },
     handleScroll() {
-      const doc = <HTMLElement>document.querySelector('#xyz');
+      const doc = <HTMLElement>document.querySelector('#search__results');
       const bottomWindow = doc.scrollTop + doc.clientHeight === doc.scrollHeight;
 
       if (bottomWindow) {
@@ -39,11 +39,11 @@ export default Vue.extend({
     },
   },
   mounted() {
-    const doc = <HTMLElement>document.querySelector('#xyz');
+    const doc = <HTMLElement>document.querySelector('#search__results');
     doc.addEventListener('scroll', this.handleScroll);
   },
   beforeDestroy() {
-    const doc = <HTMLElement>document.querySelector('#xyz');
+    const doc = <HTMLElement>document.querySelector('#search__results');
     if (doc) {
       doc.removeEventListener('scroll', this.handleScroll);
     }

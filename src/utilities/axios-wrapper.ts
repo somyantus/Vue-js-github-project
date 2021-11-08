@@ -1,9 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
 import { BASE_URL, TOKEN, SEARCH_URL, SEARCH_USER_URL, FOLLOWING } from '@/constants/constants';
 import { GetSearchDataPayload, WhoToFollowPayload } from '@/store/types/payloadTypes';
+import { User } from '@/store/types/userTypes';
 
 export default {
-  index(token: string): Promise<AxiosResponse> {
+  index(token: string): Promise<AxiosResponse<User>> {
     return axios.get(`${BASE_URL}${TOKEN}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -16,10 +17,10 @@ export default {
       params: { q: userName, page },
     });
   },
-  searchUser(userName: string): Promise<AxiosResponse> {
+  searchUser(userName: string): Promise<AxiosResponse<User>> {
     return axios.get(`${BASE_URL}${SEARCH_USER_URL}/${userName}`);
   },
-  whoToFollow(payload: WhoToFollowPayload): Promise<AxiosResponse> {
+  whoToFollow(payload: WhoToFollowPayload): Promise<AxiosResponse<User[]>> {
     const { page, perPage } = payload;
     const since = Math.floor(Math.random() * 5000000);
     return axios.get(`${BASE_URL}${SEARCH_USER_URL}`, {

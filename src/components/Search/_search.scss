@@ -4,12 +4,12 @@
 .search {
   width: fit-content;
   box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
-  background: white;
+  background: $white;
   margin: 13rem auto 2rem;
   padding: 4rem 4rem 3rem;
   display: grid;
   border-radius: 1.5rem;
-  box-shadow: 0.1rem 0.1rem 1rem rgb(196, 193, 193);
+  box-shadow: 0.1rem 0.1rem 1rem $grey;
 
   &__cards-grid {
     display: grid;
@@ -20,20 +20,20 @@
   }
 
   &__card {
-    display: flex;
+    @include content-alignment(flex, row, initial, center);
     padding: 1rem 4rem;
     width: 34rem;
-    align-items: center;
     background: $white;
     margin: 1rem auto;
     box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
     cursor: pointer;
   }
+
   &__input {
     width: 28rem;
     border-radius: 1.5rem;
     margin-bottom: 3rem;
-    border: 1px solid lightgrey;
+    border: 0.1rem solid $light-grey;
     padding: 1.2rem;
     outline: none;
   }
@@ -45,21 +45,19 @@
   }
 
   &__button {
+    @include font-styling($font-size-1-3, 1rem, $white, $roboto-regular);
     width: fit-content;
-    background: linear-gradient(105deg, #a5f8ca, #9ddcf5);
+    background: linear-gradient(105deg, $light-green, $light-blue);
     border-radius: 1rem;
-    padding: 0.6rem 4rem;
+    padding: 1rem 4rem;
     margin: 0 auto;
     border: none;
-    color: white;
-    cursor: pointer;
-    font-family: $roboto-regular;
     letter-spacing: 0.1rem;
 
     &:hover {
-      background: white;
-      color: #9ddcf5;
-      border: 0.1rem solid #9ddcf5;
+      background: $white;
+      color: $light-blue;
+      border: 0.1rem solid $light-blue;
     }
   }
 

@@ -22,7 +22,7 @@ type AugmentedActionContext = {
 } & Omit<ActionContext<StateType, StateType>, 'commit'>;
 
 export interface Actions {
-  [ActionTypes.doLogin]({ commit }: AugmentedActionContext, payload: string): Promise<any>;
+  [ActionTypes.doLogin]({ commit }: AugmentedActionContext, payload: string): Promise<void>;
   [ActionTypes.fetchAccessToken](
     { commit }: AugmentedActionContext,
     { dispatch }: AugmentedActionContext,

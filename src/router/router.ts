@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/pages/Home/HomePage.vue';
 import Profile from '@/pages/ProfilePage/ProfilePage.vue';
 import Login from '@/pages/LoginPage/LoginPage.vue';
 import NotFound from '@/pages/404Page/404Page.vue';
@@ -23,11 +22,6 @@ const router = new VueRouter({
       name: 'profile',
       component: Profile,
       meta: { requiresAuth: true },
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: Home,
     },
     {
       path: '/search',

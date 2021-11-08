@@ -4,7 +4,7 @@
       <input placeholder="Search" class="search__input" v-model="username" />
       <a href="#" @click.prevent="setSearchData(true)" class="search__button">Search</a>
     </div>
-    <div class="search__cards-grid" id="xyz">
+    <div class="search__cards-grid" id="search__results">
       <div
         v-for="(data, index) in searchData"
         :key="index"

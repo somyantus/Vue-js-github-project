@@ -17,7 +17,7 @@ export default Vue.extend({
     this.setWhoToFollowData();
   },
   methods: {
-    ...mapActions(['getWhoToFollow', 'removeWhoToFollow']),
+    ...mapActions(['getWhoToFollow']),
     setWhoToFollowData() {
       this.getWhoToFollow({ page: this.page, perPage: this.perPage, index: -1 });
     },

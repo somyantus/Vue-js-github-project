@@ -38,6 +38,11 @@ export default Vue.extend({
   },
   computed: {
     ...mapState(['data', 'searchUser', 'whoToFollowData']),
+    followCheck(): boolean {
+      const abc = this.data.login !== this.$route.params.userName;
+      const xyz = this.isFollowing === false;
+      return abc && xyz;
+    },
   },
   methods: {
     ...mapActions(['addFollowing']),
