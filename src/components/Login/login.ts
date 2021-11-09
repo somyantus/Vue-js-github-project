@@ -9,7 +9,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(['loggingIn', 'loginError', 'accessToken', 'loading', 'data']),
+    ...mapState(['loggingIn', 'loginError', 'accessToken', 'loading', 'data', 'accessToken']),
   },
   methods: {
     ...mapActions(['doLogin', 'loginErrorMssg']),
@@ -23,7 +23,7 @@ export default Vue.extend({
         .then(() => {
           this.$router.push({
             name: 'profile',
-            params: { userName: this.$store.state.data.login },
+            params: { userName: this.data.login },
           });
         })
         .catch((error) => {
@@ -32,17 +32,17 @@ export default Vue.extend({
       return null;
     },
     checkState() {
-      if (this.$store.state.accessToken && !this.loading) {
+      if (this.accessToken && !this.loading) {
         this.$router.push({
           name: 'profile',
-          params: { userName: this.$store.state.data.login },
+          params: { userName: this.data.login },
         });
       }
     },
   },
   watch: {
-    loading(newV, oldV) {
-      if (newV === oldV) return;
+    loading(newState, oldState) {
+      if (newState === oldState) return;
       this.checkState();
     },
   },

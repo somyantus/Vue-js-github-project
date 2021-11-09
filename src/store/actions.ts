@@ -77,7 +77,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.addFollowing]({ state }, username): void {
     AxiosWrapper.addFollowing(username, state.accessToken);
   },
-  [ActionTypes.loginErrorMssg]({ commit }, errorMessage: string): void {
+  [ActionTypes.loginErrorMessage]({ commit }, errorMessage: string): void {
     commit(MutationTypes.loginStop, errorMessage);
   },
 };

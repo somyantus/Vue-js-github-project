@@ -12,7 +12,7 @@ export enum ActionTypes {
   getWhoToFollow = 'getWhoToFollow',
   removeWhoToFollow = 'removeWhoToFollow',
   addFollowing = 'addFollowing',
-  loginErrorMssg = 'loginErrorMssg',
+  loginErrorMessage = 'loginErrorMssg',
 }
 
 type AugmentedActionContext = {
@@ -40,5 +40,5 @@ export interface Actions {
     payload: WhoToFollowPayload
   ): void;
   [ActionTypes.addFollowing]({ commit }: AugmentedActionContext, payload: string): void;
-  [ActionTypes.loginErrorMssg]({ commit }: AugmentedActionContext, payload: string): void;
+  [ActionTypes.loginErrorMessage]({ commit }: AugmentedActionContext, payload: string): void;
 }
