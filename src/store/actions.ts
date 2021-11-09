@@ -28,6 +28,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
       dispatch('doLogin', token);
     }
   },
+
   [ActionTypes.logOut]({ commit }): void {
     commit(MutationTypes.logOut);
     localStorage.removeItem('accessToken');
@@ -75,5 +76,8 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   },
   [ActionTypes.addFollowing]({ state }, username): void {
     AxiosWrapper.addFollowing(username, state.accessToken);
+  },
+  [ActionTypes.loginErrorMssg]({ commit }, errorMessage: string): void {
+    commit(MutationTypes.loginStop, errorMessage);
   },
 };

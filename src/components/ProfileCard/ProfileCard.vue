@@ -27,10 +27,10 @@
         </button>
       </div>
       <div class="profile__details">
-        <h2 class="profile__name">{{ name || 'Oops! No Name' }}</h2>
-        <p class="profile__bio">{{ bio || 'No Bio' }}</p>
+        <h2 class="profile__name">{{ name || userName }}</h2>
+        <p class="profile__bio">{{ bio || 'No Bio Available' }}</p>
         <p class="profile__blog">
-          {{ blog || 'No Blog' }}
+          {{ blog || 'No Blog Available' }}
         </p>
       </div>
     </div>

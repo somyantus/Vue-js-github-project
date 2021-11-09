@@ -1,11 +1,10 @@
 <template>
   <div class="login-card container">
-    <p v-if="loginError">{{ loginError }}</p>
-
     <form class="login-card__form" @submit.prevent="loginSubmit">
       <p v-if="accessToken" class="login-card__label">Login Successful</p>
       <label class="login-card__label">Login Account</label>
       <input class="login-card__input" type="password" placeholder="Enter token" v-model="token" />
+      <p v-if="loginError" class="login-card__error">{{ loginError }}</p>
       <button type="submit" class="login-card__button">Login</button>
     </form>
   </div>

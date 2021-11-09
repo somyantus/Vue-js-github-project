@@ -26,6 +26,11 @@
     border-radius: 1rem;
   }
 
+  &__error {
+    @include font-styling($font-size-1-5, 1rem, $red, $roboto-bold);
+    margin-bottom: 2rem;
+  }
+
   &__button {
     padding: 1rem 4rem;
   }
