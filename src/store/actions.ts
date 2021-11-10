@@ -1,22 +1,29 @@
 import { ActionTree } from 'vuex';
-import AxiosWrapper from '@/utilities/axios-wrapper';
+import axios from '@/utilities/axios-wrapper';
 import { ActionTypes, Actions } from '@/store/actions-type';
 import { MutationTypes } from './mutation-types';
-import { StateType } from './state';
+import { state, StateType } from './state';
+import { FOLLOWING, SEARCH_URL, SEARCH_USER_URL, TOKEN } from '@/constants/constants';
+import { User } from './types/userTypes';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.doLogin]({ commit }, token: string): Promise<void> {
     commit(MutationTypes.loading, true);
     commit(MutationTypes.loginStart);
-    return AxiosWrapper.index(token)
-      .then((response) => {
+    return axios
+      .get(`${TOKEN}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response: any) => {
         localStorage.setItem('accessToken', token);
         commit(MutationTypes.setPosts, response.data);
         commit(MutationTypes.loginStop, '');
         commit(MutationTypes.updateAccessToken, token);
         commit(MutationTypes.loading, false);
       })
-      .catch((error) => {
+      .catch((error: { response: { data: { error: string | undefined } } }) => {
         commit(MutationTypes.loginStop, error.response.data.error);
         commit(MutationTypes.updateAccessToken, '');
       });
@@ -35,33 +42,49 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   },
   [ActionTypes.getSearchData]({ commit }, payload): void {
     commit(MutationTypes.loading, true);
-    AxiosWrapper.searchData(payload).then((response: any) => {
-      commit(MutationTypes.setSearchdata, {
-        searchData: response.data.items,
-        append: payload.page !== 1,
+    const { userName, page } = payload;
+    axios
+      .get(`${SEARCH_URL}`, {
+        params: {
+          q: userName,
+          page,
+        },
+      })
+      .then((response: any) => {
+        commit(MutationTypes.setSearchdata, {
+          searchData: response.data.items,
+          append: payload.page !== 1,
+        });
+        commit(MutationTypes.loading, false);
       });
-      commit(MutationTypes.loading, false);
-    });
   },
   [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
     commit(MutationTypes.loading, true);
-    return AxiosWrapper.searchUser(userName).then((response) => {
+    return axios.get(`${SEARCH_USER_URL}/${userName}`).then((response: any) => {
       commit(MutationTypes.setSearchUser, response.data);
       commit(MutationTypes.loading, false);
     });
   },
   [ActionTypes.getWhoToFollow]({ state, commit }, payload): void {
     commit(MutationTypes.loading, true);
-    const { index } = payload;
-
+    const { index, page, perPage } = payload;
+    const since = Math.floor(Math.random() * 5000000);
     if (index === -1) {
-      AxiosWrapper.whoToFollow(payload).then((response) => {
-        commit(MutationTypes.whoToFollow, {
-          data: response.data,
-          index,
+      axios
+        .get(`${SEARCH_USER_URL}`, {
+          params: {
+            page,
+            per_page: perPage,
+            since,
+          },
+        })
+        .then((response: any) => {
+          commit(MutationTypes.whoToFollow, {
+            data: response.data,
+            index,
+          });
+          commit(MutationTypes.loading, false);
         });
-        commit(MutationTypes.loading, false);
-      });
     } else {
       const nextFollow = state.whoToFollowData.slice(
         state.whoToFollowLastIndex,
@@ -74,10 +97,30 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
       commit(MutationTypes.loading, false);
     }
   },
-  [ActionTypes.addFollowing]({ state }, username): void {
-    AxiosWrapper.addFollowing(username, state.accessToken);
+  [ActionTypes.addFollowing](username): void {
+    axios.put(`${TOKEN}${FOLLOWING}/${username}`, {
+      headers: {
+        Authorization: `Bearer ${state.accessToken}`,
+      },
+    });
   },
   [ActionTypes.loginErrorMessage]({ commit }, errorMessage: string): void {
     commit(MutationTypes.loginStop, errorMessage);
+  },
+  [ActionTypes.isFollowed]({ commit }, username): void {
+    axios
+      .get(`${TOKEN}${FOLLOWING}/${username}`, {
+        headers: {
+          Authorization: `Bearer ${state.accessToken}`,
+        },
+      })
+      .then(
+        () => {
+          commit(MutationTypes.checkFollowed, true);
+        },
+        () => {
+          commit(MutationTypes.checkFollowed, false);
+        }
+      );
   },
 };

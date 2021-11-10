@@ -14,6 +14,7 @@ export type Mutations<S = StateType> = {
   [MutationTypes.setSearchUser](state: S, searchUser: User): void;
   [MutationTypes.whoToFollow](state: S, payload: MutationWhoToFollowPayload): void;
   [MutationTypes.loading](state: S, loading: boolean): void;
+  [MutationTypes.checkFollowed](state: S, following: boolean): void;
 };
 
 export const mutations: Mutations = {
@@ -57,5 +58,8 @@ export const mutations: Mutations = {
   },
   [MutationTypes.loading](state, loading) {
     state.loading = loading;
+  },
+  [MutationTypes.checkFollowed](state, following) {
+    state.following = following;
   },
 };

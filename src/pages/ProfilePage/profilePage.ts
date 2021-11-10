@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
 
 export default Vue.extend({
@@ -21,7 +21,7 @@ export default Vue.extend({
     this.init();
   },
   methods: {
-    ...mapActions(['getUser']),
+    ...mapActions(['getUser', 'isFollowed']),
     init() {
       const username = this.$route.params.userName;
       const loginUser = this.$store.state.data.login;
@@ -34,6 +34,7 @@ export default Vue.extend({
     searchUser() {
       this.getUser(this.$route.params.userName).then(() => {
         this.profileData = this.$store.state.searchUser;
+        this.isFollowed(this.$route.params.userName);
       });
     },
   },

@@ -11,6 +11,7 @@ export const state = {
   whoToFollowData: [] as User[],
   whoToFollowVisibleData: [] as User[],
   whoToFollowLastIndex: 0,
+  following: false,
 };
 
 export type StateType = typeof state;

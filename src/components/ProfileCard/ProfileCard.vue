@@ -22,9 +22,7 @@
         >
           Follow
         </button>
-        <button v-if="isFollowing === true" type="button" class="profile__following-button">
-          Following
-        </button>
+        <button v-else type="button" class="profile__following-button">Following</button>
       </div>
       <div class="profile__details">
         <h2 class="profile__name">{{ name || userName }}</h2>

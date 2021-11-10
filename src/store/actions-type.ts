@@ -13,6 +13,7 @@ export enum ActionTypes {
   removeWhoToFollow = 'removeWhoToFollow',
   addFollowing = 'addFollowing',
   loginErrorMessage = 'loginErrorMssg',
+  isFollowed = 'isFollowed',
 }
 
 type AugmentedActionContext = {
@@ -41,4 +42,5 @@ export interface Actions {
   ): void;
   [ActionTypes.addFollowing]({ commit }: AugmentedActionContext, payload: string): void;
   [ActionTypes.loginErrorMessage]({ commit }: AugmentedActionContext, payload: string): void;
+  [ActionTypes.isFollowed]({ commit }: AugmentedActionContext, payload: string): void;
 }
