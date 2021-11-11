@@ -11,12 +11,12 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     commit(MutationTypes.loading, true);
     commit(MutationTypes.loginStart);
     return axios
-      .get(`${TOKEN}`, {
+      .get<User>(`${TOKEN}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response: any) => {
+      .then((response) => {
         localStorage.setItem('accessToken', token);
         commit(MutationTypes.setPosts, response.data);
         commit(MutationTypes.loginStop, '');
@@ -60,7 +60,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
   },
   [ActionTypes.getUser]({ commit }, userName: string): Promise<void> {
     commit(MutationTypes.loading, true);
-    return axios.get(`${SEARCH_USER_URL}/${userName}`).then((response: any) => {
+    return axios.get<User>(`${SEARCH_USER_URL}/${userName}`).then((response) => {
       commit(MutationTypes.setSearchUser, response.data);
       commit(MutationTypes.loading, false);
     });
@@ -71,14 +71,14 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     const since = Math.floor(Math.random() * 5000000);
     if (index === -1) {
       axios
-        .get(`${SEARCH_USER_URL}`, {
+        .get<User[]>(`${SEARCH_USER_URL}`, {
           params: {
             page,
             per_page: perPage,
             since,
           },
         })
-        .then((response: any) => {
+        .then((response) => {
           commit(MutationTypes.whoToFollow, {
             data: response.data,
             index,
@@ -108,6 +108,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     commit(MutationTypes.loginStop, errorMessage);
   },
   [ActionTypes.isFollowed]({ commit }, username): void {
+    commit(MutationTypes.checkFollowed, false);
     axios
       .get(`${TOKEN}${FOLLOWING}/${username}`, {
         headers: {

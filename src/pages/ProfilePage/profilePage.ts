@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
 
 export default Vue.extend({
@@ -12,8 +12,8 @@ export default Vue.extend({
     };
   },
   watch: {
-    '$route.params.userName': function (newV, oldV) {
-      if (newV === oldV) return;
+    '$route.params.userName': function profile(newUsername, oldUsername) {
+      if (newUsername === oldUsername) return;
       this.init();
     },
   },

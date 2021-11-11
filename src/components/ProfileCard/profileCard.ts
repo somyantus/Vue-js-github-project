@@ -39,15 +39,8 @@ export default Vue.extend({
   computed: {
     ...mapState(['data', 'following']),
     followCheck(): boolean {
-      const abc = this.data.login !== this.$route.params.userName;
-      console.log(
-        this.data.login,
-        this.$route.params.userName,
-        abc,
-        this.isFollowing,
-        this.following
-      );
-      return abc && !(this.isFollowing || this.following);
+      console.log(this.isFollowing, this.following);
+      return !(this.isFollowing || this.following);
     },
   },
   methods: {

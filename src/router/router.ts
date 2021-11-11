@@ -5,7 +5,6 @@ import Login from '@/pages/LoginPage/LoginPage.vue';
 import NotFound from '@/pages/404Page/404Page.vue';
 import Search from '@/pages/SearchPage/SearchPage.vue';
 import WhoToFollow from '@/pages/WhoToFollow/WhoToFollow.vue';
-import { state } from '@/store/state';
 
 Vue.use(VueRouter);
 
@@ -54,18 +53,4 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (state.searchData == null) {
-      next({
-        name: 'login',
-      });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
-});
-
 export default router;
