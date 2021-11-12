@@ -4,7 +4,6 @@
 .follow {
   @include content-alignment(flex, column);
   margin: 13rem auto;
-  width: fit-content;
 
   &__heading-block {
     display: flex;
@@ -45,7 +44,7 @@
     &-1 {
       @include content-alignment(flex, row, left, center);
       width: 100%;
-      padding: 03rem;
+      padding: 3rem;
     }
 
     &-2 {

@@ -1,10 +1,15 @@
 <template>
   <div>
     <div class="search container">
-      <input placeholder="Search" class="search__input" v-model="username" />
+      <input
+        placeholder="Search"
+        class="search__input"
+        v-model="username"
+        v-on:keyup.enter="setSearchData(true)"
+      />
       <a href="#" @click.prevent="setSearchData(true)" class="search__button">Search</a>
     </div>
-    <div class="search__cards-grid" id="search__results">
+    <div class="search__cards-grid" id="search__results" v-on:scroll="handleScroll">
       <div
         v-for="(data, index) in searchData"
         :key="index"

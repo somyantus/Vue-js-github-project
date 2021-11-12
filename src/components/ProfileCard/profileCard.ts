@@ -39,7 +39,6 @@ export default Vue.extend({
   computed: {
     ...mapState(['data', 'following']),
     followCheck(): boolean {
-      console.log(this.isFollowing, this.following);
       return !(this.isFollowing || this.following);
     },
   },

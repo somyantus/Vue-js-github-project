@@ -38,14 +38,4 @@ export default Vue.extend({
       }
     },
   },
-  mounted() {
-    const doc = <HTMLElement>document.querySelector('#search__results');
-    doc.addEventListener('scroll', this.handleScroll);
-  },
-  beforeDestroy() {
-    const doc = <HTMLElement>document.querySelector('#search__results');
-    if (doc) {
-      doc.removeEventListener('scroll', this.handleScroll);
-    }
-  },
 });

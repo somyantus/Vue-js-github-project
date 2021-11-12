@@ -32,10 +32,15 @@ export default Vue.extend({
       }
     },
     searchUser() {
-      this.getUser(this.$route.params.userName).then(() => {
-        this.profileData = this.$store.state.searchUser;
-        this.isFollowed(this.$route.params.userName);
-      });
+      this.getUser(this.$route.params.userName).then(
+        () => {
+          this.profileData = this.$store.state.searchUser;
+          this.isFollowed(this.$route.params.userName);
+        },
+        () => {
+          this.profileData = {};
+        }
+      );
     },
   },
 });

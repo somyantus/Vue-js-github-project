@@ -14,16 +14,15 @@
           <h3><i class="icon-user"></i>Followers</h3>
           <p class="profile__followers-num">{{ followerNum }}</p>
         </div>
-        <div v-if="data.login !== this.$route.params.userName">
+        <div v-if="data.login !== $route.params.userName">
           <button
-            v-if="followCheck"
             type="button"
             class="profile__follow-button"
             @click.prevent="setAddFollowing($route.params.userName)"
           >
-            Follow
+            <template v-if="followCheck">Follow</template>
+            <template v-else>Following</template>
           </button>
-          <button v-else type="button" class="profile__following-button">Following</button>
         </div>
       </div>
       <div class="profile__details">
@@ -36,7 +35,7 @@
     </div>
     <div class="profile__links">
       <h3 v-if="email">
-        Email: <a target="blank" :href="email"> {{ email }}</a>
+        Email: <a target="blank" href="mailto:somyaagarwal2000@gmail.com">{{ email }}</a>
       </h3>
       <h3 v-if="githubLink">
         Github: <a :href="githubLink" target="blank"> {{ githubLink }}</a>
