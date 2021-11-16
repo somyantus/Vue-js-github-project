@@ -1,5 +1,5 @@
 import { User } from './userTypes';
 
-export interface AxiosResponseType {
+export interface SearchAxiosResponseType {
   items: User[];
 }

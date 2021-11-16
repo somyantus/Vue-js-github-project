@@ -20,8 +20,7 @@
             class="profile__follow-button"
             @click.prevent="setAddFollowing($route.params.userName)"
           >
-            <template v-if="followCheck">Follow</template>
-            <template v-else>Following</template>
+            {{ followCheck ? 'Follow' : 'Following' }}
           </button>
         </div>
       </div>
@@ -35,7 +34,7 @@
     </div>
     <div class="profile__links">
       <h3 v-if="email">
-        Email: <a target="blank" href="mailto:somyaagarwal2000@gmail.com">{{ email }}</a>
+        Email: <a target="blank" :href="'mailto:' + email">{{ email }}</a>
       </h3>
       <h3 v-if="githubLink">
         Github: <a :href="githubLink" target="blank"> {{ githubLink }}</a>

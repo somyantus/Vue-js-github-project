@@ -21,7 +21,7 @@ instance.interceptors.response.use(
   },
   function err(error) {
     if (error.response && error.response.status !== 404) {
-      Vue.$toast(error.response.data);
+      Vue.$toast(error.response.data.message);
       state.loading = false;
     }
     return Promise.reject(error);

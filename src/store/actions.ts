@@ -5,7 +5,7 @@ import { MutationTypes } from './mutation-types';
 import { state, StateType } from './state';
 import { FOLLOWING, SEARCH_URL, SEARCH_USER_URL, TOKEN } from '@/constants/constants';
 import { User } from './types/userTypes';
-import { AxiosResponseType } from './types/axiosResponseTypes';
+import { SearchAxiosResponseType } from './types/axiosResponseTypes';
 
 export const actions: ActionTree<StateType, StateType> & Actions = {
   [ActionTypes.doLogin]({ commit }, token: string): Promise<void> {
@@ -41,7 +41,7 @@ export const actions: ActionTree<StateType, StateType> & Actions = {
     commit(MutationTypes.loading, true);
     const { userName, page } = payload;
     axios
-      .get<AxiosResponseType>(`${SEARCH_URL}`, {
+      .get<SearchAxiosResponseType>(`${SEARCH_URL}`, {
         params: {
           q: userName,
           page,
