@@ -29,8 +29,12 @@
   }
 
   &__card-row {
-    display: flex;
-    justify-content: center;
+    @include content-alignment(flex, row, center);
+
+    @media only screen and (max-width: 998px) {
+      @include content-alignment(flex, column, center);
+      margin: auto;
+    }
   }
 
   &__card {
