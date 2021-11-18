@@ -29,6 +29,11 @@
     cursor: pointer;
   }
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__input {
     width: 28rem;
     border-radius: 1.5rem;

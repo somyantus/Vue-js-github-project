@@ -1,13 +1,10 @@
 <template>
   <div>
     <div class="search container">
-      <input
-        placeholder="Search"
-        class="search__input"
-        v-model="username"
-        @keyup.enter="setSearchData(true)"
-      />
-      <a href="#" @click.prevent="setSearchData(true)" class="search__button">Search</a>
+      <form @submit="setSearchData(true)" class="search__form">
+        <input placeholder="Search" class="search__input" v-model="username" />
+        <a href="#" class="search__button" @click.prevent="setSearchData(true)">Search</a>
+      </form>
     </div>
     <div class="search__cards-grid" id="search__results" @scroll="handleScroll">
       <div

@@ -62,10 +62,9 @@
 
   &__follow-button {
     padding: 0.6rem 3rem;
-  }
-
-  &__following-button {
-    padding: 0.6rem 1rem;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   &__details {

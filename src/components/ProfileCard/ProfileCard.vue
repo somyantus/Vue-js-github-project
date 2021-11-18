@@ -19,6 +19,7 @@
             type="button"
             class="profile__follow-button"
             @click.prevent="setAddFollowing($route.params.userName)"
+            :disabled="disableBtn || !followCheck"
           >
             {{ followCheck ? 'Follow' : 'Following' }}
           </button>

@@ -5,6 +5,7 @@ export default Vue.extend({
   data() {
     return {
       isFollowing: false,
+      disableBtn: false,
     };
   },
   props: {
@@ -47,6 +48,7 @@ export default Vue.extend({
     setAddFollowing(username: string) {
       this.addFollowing(username);
       this.isFollowing = true;
+      this.disableBtn = true;
     },
   },
 });
