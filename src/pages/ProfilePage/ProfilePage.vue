@@ -12,9 +12,7 @@
       :email="profileData.email"
       :github-link="profileData.html_url"
     ></ProfileCard>
-    <h3 v-else-if="!this.$store.state.loading" class="not-found">
-      User you saerched for Not Found
-    </h3>
+    <h3 v-else-if="!loading" class="not-found">User you saerched for Not Found</h3>
   </div>
 </template>
 

@@ -11,18 +11,16 @@
         <div class="follow__card-1">
           <img :src="user.avatar_url" class="follow__card-img" />
           <h2 class="follow__card-username">{{ user.login }}</h2>
-          <button type="button" class="follow__cross-button">
+          <a href="#" class="follow__cross-button">
             <img
               src="../../assets/images/cross-removebg-preview.png"
               class="follow__cross"
               @click.prevent="changeSuggestion(index)"
             />
-          </button>
+          </a>
         </div>
         <div class="follow__card-2">
-          <button type="button" class="follow__button" @click.prevent="moveToProfile(user)">
-            View Profile
-          </button>
+          <a href="#" class="follow__button" @click.prevent="moveToProfile(user)"> View Profile </a>
         </div>
       </div>
     </div>

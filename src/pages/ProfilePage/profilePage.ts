@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
 
 export default Vue.extend({
@@ -16,6 +16,9 @@ export default Vue.extend({
       if (newUsername === oldUsername) return;
       this.init();
     },
+  },
+  computed: {
+    ...mapState(['loading']),
   },
   mounted() {
     this.init();
