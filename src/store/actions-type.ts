@@ -12,6 +12,8 @@ export enum ActionTypes {
   getWhoToFollow = 'getWhoToFollow',
   removeWhoToFollow = 'removeWhoToFollow',
   addFollowing = 'addFollowing',
+  loginErrorMessage = 'loginErrorMssg',
+  isFollowed = 'isFollowed',
 }
 
 type AugmentedActionContext = {
@@ -22,7 +24,7 @@ type AugmentedActionContext = {
 } & Omit<ActionContext<StateType, StateType>, 'commit'>;
 
 export interface Actions {
-  [ActionTypes.doLogin]({ commit }: AugmentedActionContext, payload: string): Promise<any>;
+  [ActionTypes.doLogin]({ commit }: AugmentedActionContext, payload: string): Promise<void>;
   [ActionTypes.fetchAccessToken](
     { commit }: AugmentedActionContext,
     { dispatch }: AugmentedActionContext,
@@ -39,4 +41,6 @@ export interface Actions {
     payload: WhoToFollowPayload
   ): void;
   [ActionTypes.addFollowing]({ commit }: AugmentedActionContext, payload: string): void;
+  [ActionTypes.loginErrorMessage]({ commit }: AugmentedActionContext, payload: string): void;
+  [ActionTypes.isFollowed]({ commit }: AugmentedActionContext, payload: string): void;
 }

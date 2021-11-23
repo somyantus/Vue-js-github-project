@@ -25,23 +25,17 @@ export default Vue.extend({
     getProfile(data: User) {
       this.$router.push({
         name: 'profile',
-        query: { userName: data.login },
+        params: { userName: data.login },
       });
       this.$store.state.loading = false;
     },
     handleScroll() {
-      const doc = document.documentElement;
-      const bottomWindow = doc.scrollTop + window.innerHeight === doc.offsetHeight;
+      const doc = <HTMLElement>document.querySelector('#search__results');
+      const bottomWindow = doc.scrollTop + doc.clientHeight === doc.scrollHeight;
 
       if (bottomWindow) {
         this.setSearchData();
       }
     },
-  },
-  created() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll);
   },
 });

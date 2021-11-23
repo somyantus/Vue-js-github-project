@@ -7,6 +7,6 @@ export enum MutationTypes {
   setSearchdata = 'setSearchdata',
   setSearchUser = 'setSearchUser',
   whoToFollow = 'whoToFollow',
-  removeWhoToFollow = 'removeWhoToFollow',
   loading = 'loading',
+  checkFollowed = 'checkFollowed',
 }

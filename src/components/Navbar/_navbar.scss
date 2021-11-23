@@ -4,14 +4,14 @@
 .navbar {
   @include content-alignment(flex, initial, initial, center);
   padding: 3rem 4rem;
-  background: #f1f5f8;
-  box-shadow: 1.1rem 1.1rem 2rem $bluish-shade;
+  background: $white;
+  box-shadow: 0.5rem 0.3rem 1rem $dark-grey-3;
 
   &__links {
     margin-left: auto;
   }
   &__items {
-    font-size: 1.5rem;
+    @include font-styling($font-size-1-5, 1rem, $black, $roboto-light);
     margin-right: 2rem;
   }
 
@@ -23,5 +23,6 @@
   &__home-icon {
     font-size: 2rem;
     margin-right: 1rem;
+    color: $black;
   }
 }

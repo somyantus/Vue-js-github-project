@@ -7,7 +7,7 @@ export interface User {
   gravatarId?: string;
   htmlUrl?: string;
   id?: number;
-  login?: string;
+  login: string;
   nodeId?: string;
   organizationsUrl?: string;
   receivedEventsUrl?: string;

@@ -1,11 +1,25 @@
 @import '../abstracts/variables';
 
 body {
-  background: $grey-2;
+  background: linear-gradient(105deg, #a5f8ca, #9ddcf5);
 }
 
 button {
+  @include font-styling($font-size-1-3, 1rem, $white, $roboto-regular);
   cursor: pointer;
+  width: fit-content;
+  background: linear-gradient(105deg, $light-green, $light-blue);
+  border-radius: 1rem;
+  padding: 0.6rem 4rem;
+  margin: 0 auto;
+  border: none;
+  letter-spacing: 0.1rem;
+
+  &:hover {
+    background: $white;
+    color: $light-blue;
+    border: 0.1rem solid $light-blue;
+  }
 }
 
 * {

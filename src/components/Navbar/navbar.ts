@@ -4,7 +4,7 @@ import { mapActions, mapState } from 'vuex';
 export default Vue.extend({
   name: 'Navbar',
   computed: {
-    ...mapState(['accessToken']),
+    ...mapState(['accessToken', 'data']),
   },
   methods: {
     ...mapActions(['logOut']),

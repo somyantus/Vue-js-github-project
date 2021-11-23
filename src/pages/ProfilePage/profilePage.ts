@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
 
 export default Vue.extend({
@@ -11,22 +11,39 @@ export default Vue.extend({
       profileData: {},
     };
   },
-  mounted() {
-    const username = this.$route.query.userName;
-    const loginUser = this.$store.state.data.login;
-    if (loginUser && username === loginUser) {
-      this.profileData = this.$store.state.data;
-    } else {
-      this.searchUser();
-    }
+  watch: {
+    '$route.params.userName': function profile(newUsername, oldUsername) {
+      if (newUsername === oldUsername) return;
+      this.init();
+    },
   },
-
+  computed: {
+    ...mapState(['loading']),
+  },
+  mounted() {
+    this.init();
+  },
   methods: {
-    ...mapActions(['getUser']),
+    ...mapActions(['getUser', 'isFollowed']),
+    init() {
+      const username = this.$route.params.userName;
+      const loginUser = this.$store.state.data.login;
+      if (loginUser && username === loginUser) {
+        this.profileData = this.$store.state.data;
+      } else {
+        this.searchUser();
+      }
+    },
     searchUser() {
-      this.getUser(this.$route.query.userName).then(() => {
-        this.profileData = this.$store.state.searchUser;
-      });
+      this.getUser(this.$route.params.userName).then(
+        () => {
+          this.profileData = this.$store.state.searchUser;
+          this.isFollowed(this.$route.params.userName);
+        },
+        () => {
+          this.profileData = {};
+        }
+      );
     },
   },
 });

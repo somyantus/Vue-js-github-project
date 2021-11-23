@@ -9,29 +9,44 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(['loggingIn', 'loginError', 'accessToken']),
+    ...mapState(['loggingIn', 'loginError', 'accessToken', 'loading', 'data', 'accessToken']),
   },
   methods: {
-    ...mapActions(['doLogin']),
+    ...mapActions(['doLogin', 'loginErrorMssg']),
     loginSubmit() {
+      if (!this.token || this.token.length === 0) {
+        // show error
+        this.loginErrorMssg('Token Required !!');
+        return null;
+      }
       this.doLogin(this.token)
         .then(() => {
           this.$router.push({
             name: 'profile',
-            query: { userName: this.$store.state.data.login },
+            params: { userName: this.data.login },
           });
         })
         .catch((error) => {
           console.log(error);
         });
+      return null;
+    },
+    checkState() {
+      if (this.accessToken && !this.loading) {
+        this.$router.push({
+          name: 'profile',
+          params: { userName: this.data.login },
+        });
+      }
+    },
+  },
+  watch: {
+    loading(newState, oldState) {
+      if (newState === oldState) return;
+      this.checkState();
     },
   },
   mounted() {
-    if (this.$store.state.accessToken) {
-      this.$router.push({
-        name: 'profile',
-        query: { userName: this.$store.state.data.login },
-      });
-    }
+    this.checkState();
   },
 });

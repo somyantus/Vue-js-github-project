@@ -5,6 +5,7 @@ export default Vue.extend({
   data() {
     return {
       isFollowing: false,
+      disableBtn: false,
     };
   },
   props: {
@@ -37,13 +38,17 @@ export default Vue.extend({
     },
   },
   computed: {
-    ...mapState(['data', 'searchUser', 'whoToFollowData']),
+    ...mapState(['data', 'following']),
+    followCheck(): boolean {
+      return !(this.isFollowing || this.following);
+    },
   },
   methods: {
     ...mapActions(['addFollowing']),
     setAddFollowing(username: string) {
       this.addFollowing(username);
       this.isFollowing = true;
+      this.disableBtn = true;
     },
   },
 });

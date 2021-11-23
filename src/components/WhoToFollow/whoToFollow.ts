@@ -7,17 +7,17 @@ export default Vue.extend({
   data() {
     return {
       page: 1,
-      perPage: 3,
+      perPage: 30,
     };
   },
   computed: {
-    ...mapState(['whoToFollowData']),
+    ...mapState(['whoToFollowVisibleData']),
   },
   mounted() {
     this.setWhoToFollowData();
   },
   methods: {
-    ...mapActions(['getWhoToFollow', 'removeWhoToFollow']),
+    ...mapActions(['getWhoToFollow']),
     setWhoToFollowData() {
       this.getWhoToFollow({ page: this.page, perPage: this.perPage, index: -1 });
     },
@@ -28,7 +28,7 @@ export default Vue.extend({
     moveToProfile(data: User) {
       this.$router.push({
         name: 'profile',
-        query: { userName: data.login },
+        params: { userName: data.login },
       });
     },
   },

@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="search container">
-      <input placeholder="Search" class="search__input" v-model="username" />
-      <a href="#" @click.prevent="setSearchData(true)" class="search__button">Search</a>
+      <form @submit.prevent="setSearchData(true)" class="search__form">
+        <input placeholder="Search" class="search__input" v-model="username" />
+        <button type="submit" class="search__button">Search</button>
+      </form>
     </div>
-    <div v-if="searchData.length > 0">
+    <div class="search__cards-grid" id="search__results" @scroll="handleScroll">
       <div
         v-for="(data, index) in searchData"
         :key="index"

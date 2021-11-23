@@ -12,13 +12,15 @@
     @include content-alignment(flex, column, initial, center);
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    min-height: 23rem;
+    width: 38rem;
+    height: 38rem;
   }
 
   &__img {
-    width: 38rem;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
+    width: 100%;
+    height: 100%;
   }
 
   &__username {
@@ -36,6 +38,7 @@
     @include content-alignment(flex, column, left);
     padding: 2rem 3.5rem;
     background: $grey-1;
+    width: 17.4rem;
   }
 
   &__following {
@@ -57,27 +60,37 @@
     }
   }
 
-  &__location {
-    @extend .profile__following;
+  &__follow-button {
+    padding: 0.6rem 3rem;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   &__details {
     padding: 2rem 1.5rem 2rem 2.5rem;
-    background: $grey-2;
+    background: $white;
+    width: 20.6rem;
   }
 
   &__name {
-    max-width: 3rem;
+    width: 100%;
+    color: $dark-blue;
+    overflow: hidden;
   }
 
   &__bio {
-    @include font-styling($font-size-1, 1rem, $dark-grey);
+    @include font-styling($font-size-1-3, 1.5rem, $dark-grey);
     margin-top: 2.5rem;
+    width: 100%;
+    overflow: hidden;
   }
 
   &__blog {
-    @include font-styling($font-size-1, 2rem, $dark-grey);
+    @include font-styling($font-size-1-4, 2rem, $dark-grey);
     margin-top: 2rem;
+    width: 100%;
+    overflow: hidden;
   }
 
   &__links {
@@ -86,19 +99,5 @@
     background: $white;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
-  }
-
-  &__follow-button {
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    border: 0.1rem solid $dark-grey-2;
-    color: $dark-grey-2;
-    background: $white;
-    box-shadow: 0.1rem 0.1rem 1rem $bluish-shade;
-
-    &:hover {
-      color: $white;
-      background: $dark-grey-2;
-    }
   }
 }

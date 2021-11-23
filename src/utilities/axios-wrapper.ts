@@ -1,42 +1,30 @@
-import axios, { AxiosResponse } from 'axios';
-import { BASE_URL, TOKEN, SEARCH_URL, SEARCH_USER_URL, FOLLOWING } from '@/constants/constants';
-import { GetSearchDataPayload, WhoToFollowPayload } from '@/store/types/payloadTypes';
+import axios, { AxiosRequestConfig } from 'axios';
+import Vue from 'vue';
+import { BASE_URL } from '@/constants/constants';
+import { state } from '@/store/state';
 
-export default {
-  index(token: string): Promise<AxiosResponse> {
-    return axios.get(`${BASE_URL}${TOKEN}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+const instance = axios.create({
+  baseURL: `${BASE_URL}`,
+});
+
+export function header(token: string): AxiosRequestConfig<any> {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}
+
+instance.interceptors.response.use(
+  function res(response) {
+    return response;
   },
-  searchData(payload: GetSearchDataPayload): Promise<AxiosResponse> {
-    const { userName, page } = payload;
-    return axios.get(`${BASE_URL}${SEARCH_URL}`, {
-      params: { q: userName, page },
-    });
-  },
-  searchUser(userName: string): Promise<AxiosResponse> {
-    return axios.get(`${BASE_URL}${SEARCH_USER_URL}/${userName}`);
-  },
-  whoToFollow(payload: WhoToFollowPayload): Promise<AxiosResponse> {
-    const { page, perPage } = payload;
-    const since = Math.floor(Math.random() * 5000000);
-    return axios.get(`${BASE_URL}${SEARCH_USER_URL}`, {
-      params: {
-        page,
-        per_page: perPage,
-        since,
-      },
-    });
-  },
-  addFollowing(username: string, token: string): Promise<AxiosResponse> {
-    return axios({
-      method: 'PUT',
-      url: `${BASE_URL}${TOKEN}${FOLLOWING}/${username}`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  },
-};
+  function err(error) {
+    if (error.response && error.response.status !== 404) {
+      Vue.$toast(error.response.data.message);
+      state.loading = false;
+    }
+    return Promise.reject(error);
+  }
+);
+export default instance;
